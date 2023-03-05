@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "794979556120",
+    "project_id": "nitc-mess-manager",
+    "storage_bucket": "nitc-mess-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794979556120:android:144d65a368dac2607c9c6d",
+        "android_client_info": {
+          "package_name": "com.nitc.nitcmessmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794979556120-cqv47d89vq2b01ml992n2fsp0a1344d3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nitc.nitcmessmanager",
+            "certificate_hash": "4766025fa854d25db69507a06717183b94373e9a"
+          }
+        },
+        {
+          "client_id": "794979556120-l206tc2pp0bnesdqindpkqfe3ida8a8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqj1t15MFerVKC0c9P6cgfvNrw83J80z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794979556120-l206tc2pp0bnesdqindpkqfe3ida8a8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NITC Mess Manager</string>
+    <string name="sign_up">Don\'t have an account yet? <font color="#5b39c6"><b><i><u>Sign Up</u></i></b></font></string>
+    <string name="forgot_password"><font color="#5b39c6"><b><u>Forgot your password?</u></b></font></string>
+    <string-array name="user_type">
+        <item>Student</item>
+        <item>Mess Contractor</item>
+        <item>Admin</item>
+    </string-array>
+</resources>
