@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
-                                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                                        val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
                                                         startActivity(intent)
                                                         finish()
                                                     } else {
