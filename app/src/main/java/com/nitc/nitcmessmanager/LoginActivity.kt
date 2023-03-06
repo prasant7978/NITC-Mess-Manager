@@ -41,8 +41,12 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         loginBinding.buttonSignin.setOnClickListener {
             val userEmail = loginBinding.editTextLoginEmail.text.toString()
             val userPassword = loginBinding.editTextLoginPassword.text.toString()
-
-            signinWithFirebase(userEmail,userPassword,userType)
+            if(userEmail.isEmpty() || userPassword.isEmpty()){
+                Toast.makeText(applicationContext, "Please enter both email and password to login.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                signinWithFirebase(userEmail, userPassword, userType)
+            }
         }
 
         loginBinding.textViewSignup.setOnClickListener {
