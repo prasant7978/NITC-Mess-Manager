@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.nitc.nitcmessmanager.databinding.ActivityLoginBinding
-//import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
