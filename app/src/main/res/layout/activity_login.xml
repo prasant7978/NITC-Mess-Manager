@@ -8,7 +8,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imageView2">
+        app:layout_constraintTop_toTopOf="@id/imageViewProfile">
 
         <Spinner
             android:id="@+id/spinner"

@@ -29,9 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
+            android:text="Name"
             android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +41,6 @@
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/studentProfile"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -76,7 +75,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/studentSelectMess"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -118,13 +116,12 @@
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/studentMessMenu"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
             android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/studentPayment"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteX="89dp">
@@ -157,7 +154,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/studentPayment"
+            android:id="@+id/constraintLayout"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -192,7 +189,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonFeedback"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

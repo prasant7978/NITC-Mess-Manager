@@ -18,6 +18,12 @@
             android:exported="false"
             android:parentActivityName=".StudentDashboardActivity"/>
         <activity
+            android:name=".ContractorDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".AdminDashboard"
+            android:exported="false" />
+        <activity
             android:name=".StudentDashboardActivity"
             android:exported="false" />
         <activity
