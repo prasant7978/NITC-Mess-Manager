@@ -128,7 +128,7 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                         Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
                                                         loginBinding.buttonSignin.isClickable = true
                                                         loginBinding.progressBarLogin.visibility = View.INVISIBLE
-                                                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                                        val intent = Intent(this@LoginActivity, AdminDashboard::class.java)
                                                         startActivity(intent)
                                                         finish()
                                                     } else {
