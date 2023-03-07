@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/teal_700"
+android:orientation="vertical"
+tools:context=".ContractorDashboard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/background_top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewContractorImage"
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/textViewContractorName"
+            android:layout_width="152dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="CONTRACTOR"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_card">
+
+            <ImageView
+                android:id="@+id/imageViewMessDetails"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mess_img" />
+
+            <TextView
+                android:id="@+id/textViewMessDetails"
+                android:layout_width="97dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="View Mess Details"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewMessDetails"
+                app:layout_constraintStart_toStartOf="@+id/imageViewMessDetails"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewMessDetails" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_card">
+
+            <ImageView
+                android:id="@+id/imageViewEditMessMenu"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/messmenu" />
+
+            <TextView
+                android:id="@+id/textViewMessMenu"
+                android:layout_width="92dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Edit Mess Menu"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewEditMessMenu"
+                app:layout_constraintStart_toStartOf="@+id/imageViewEditMessMenu"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewEditMessMenu" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_card">
+
+            <ImageView
+                android:id="@+id/imageViewGenerateBill"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bill" />
+
+            <TextView
+                android:id="@+id/textViewGenerateBill"
+                android:layout_width="97dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="Generate Bill"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewGenerateBill"
+                app:layout_constraintStart_toStartOf="@+id/imageViewGenerateBill"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewGenerateBill" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>
