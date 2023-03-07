@@ -62,6 +62,18 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//
+//        val user = auth.currentUser
+//        if(user != null){
+//            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+//            val intent = Intent(this,MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+//    }
+
     private fun signinWithFirebase(email:String, pass:String, userType:String){
         loginBinding.buttonSignin.isClickable = false
         loginBinding.progressBarLogin.visibility = View.VISIBLE
@@ -80,6 +92,7 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                                                         loginBinding.buttonSignin.isClickable = true
                                                         loginBinding.progressBarLogin.visibility = View.INVISIBLE
+
                                                         val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
                                                         startActivity(intent)
                                                         finish()

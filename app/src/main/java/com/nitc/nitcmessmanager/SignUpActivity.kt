@@ -34,6 +34,7 @@ class SignUpActivity : AppCompatActivity() {
             val roll = signupBinding.editTextSignupRollno.text.toString()
             val email = signupBinding.editTextSignupEmail.text.toString()
             val password = signupBinding.editTextSignupPassword.text.toString()
+
             signupWithFirebase(email,password,name,roll)
         }
     }
