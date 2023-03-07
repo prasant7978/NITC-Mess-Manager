@@ -27,6 +27,8 @@ class SignUpActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Sign Up"
 
+        signupBinding.progressBarSignup.visibility = View.INVISIBLE
+
         signupBinding.buttonSignup.setOnClickListener {
             val name = signupBinding.editTextSignupName.text.toString()
             val roll = signupBinding.editTextSignupRollno.text.toString()
@@ -37,8 +39,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun signupWithFirebase(email:String, password:String, name:String, roll:String){
-        signupBinding.progressBarSignup.visibility = View.VISIBLE
         signupBinding.buttonSignup.isClickable = false
+        signupBinding.progressBarSignup.visibility = View.VISIBLE
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
             if(task.isSuccessful){
@@ -49,9 +51,9 @@ class SignUpActivity : AppCompatActivity() {
                 reference.child(uid).setValue(student)
 
                 Toast.makeText(this,"Your account has been created", Toast.LENGTH_SHORT).show()
-                finish()
-                signupBinding.progressBarSignup.visibility = View.INVISIBLE
                 signupBinding.buttonSignup.isClickable = true
+                signupBinding.progressBarSignup.visibility = View.INVISIBLE
+                finish()
             }
             else{
                 Toast.makeText(this,task.exception?.localizedMessage.toString(), Toast.LENGTH_SHORT).show()

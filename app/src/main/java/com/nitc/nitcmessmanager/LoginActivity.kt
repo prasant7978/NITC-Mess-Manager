@@ -16,7 +16,7 @@ import com.nitc.nitcmessmanager.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
-    lateinit var loginBinding: ActivityLoginBinding
+    lateinit var loginBinding : ActivityLoginBinding
     lateinit var userType : String
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -33,6 +33,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         setContentView(view)
 
         loginBinding.spinner.onItemSelectedListener = this
+
+        loginBinding.progressBarLogin.visibility = View.INVISIBLE
 
         val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.user_type,android.R.layout.simple_spinner_item)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -61,6 +63,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun signinWithFirebase(email:String, pass:String, userType:String){
+        loginBinding.buttonSignin.isClickable = false
+        loginBinding.progressBarLogin.visibility = View.VISIBLE
         when (userType) {
             "Student" -> {
                 studentReference.orderByChild("studentEmail").equalTo(email)
@@ -74,6 +78,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+                                                        loginBinding.buttonSignin.isClickable = true
+                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                                         val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
                                                         startActivity(intent)
                                                         finish()
@@ -120,6 +126,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
+                                                        loginBinding.buttonSignin.isClickable = true
+                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                                         startActivity(intent)
                                                         finish()
