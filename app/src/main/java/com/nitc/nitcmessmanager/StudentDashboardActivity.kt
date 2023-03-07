@@ -49,6 +49,11 @@ class StudentDashboardActivity : AppCompatActivity() {
             val intent = Intent(this@StudentDashboardActivity,StudentUpdateProfileActivity::class.java)
             startActivity(intent)
         }
+
+        dashboardBinding.constraintLayoutPayment.setOnClickListener {
+            val intent = Intent(this@StudentDashboardActivity,PaymentActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
