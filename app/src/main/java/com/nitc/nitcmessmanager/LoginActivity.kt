@@ -90,24 +90,21 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
-                                                        loginBinding.buttonSignin.isClickable = true
-                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
-
                                                         val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
                                                         startActivity(intent)
+                                                        loginBinding.buttonSignin.isClickable = true
+                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                                         finish()
                                                     } else {
-                                                        Toast.makeText(
-                                                            applicationContext,
-                                                            task.exception?.localizedMessage.toString(),
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
+                                                        Toast.makeText(applicationContext, task.exception?.localizedMessage.toString(), Toast.LENGTH_SHORT).show()
                                                     }
                                                 }
                                             }
                                             else{
                                                 Toast.makeText(applicationContext, "Wrong Credentials", Toast.LENGTH_SHORT).show()
                                             }
+                                            loginBinding.buttonSignin.isClickable = true
+                                            loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {
@@ -118,6 +115,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             }
                             else{
                                 Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+                                loginBinding.buttonSignin.isClickable = true
+                                loginBinding.progressBarLogin.visibility = View.INVISIBLE
                             }
                         }
 
@@ -139,10 +138,10 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
-                                                        loginBinding.buttonSignin.isClickable = true
-                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                                         val intent = Intent(this@LoginActivity, AdminDashboard::class.java)
                                                         startActivity(intent)
+                                                        loginBinding.buttonSignin.isClickable = true
+                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                                         finish()
                                                     } else {
                                                         Toast.makeText(
@@ -156,6 +155,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                             else{
                                                 Toast.makeText(applicationContext, "Wrong Credentials", Toast.LENGTH_SHORT).show()
                                             }
+                                            loginBinding.buttonSignin.isClickable = true
+                                            loginBinding.progressBarLogin.visibility = View.INVISIBLE
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {
@@ -166,6 +167,8 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                             }
                             else{
                                 Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+                                loginBinding.buttonSignin.isClickable = true
+                                loginBinding.progressBarLogin.visibility = View.INVISIBLE
                             }
                         }
 
@@ -176,7 +179,11 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     })
             }
             "Mess Contractor" -> {
-
+                loginBinding.buttonSignin.isClickable = true
+                loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }
