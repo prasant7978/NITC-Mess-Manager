@@ -37,7 +37,7 @@ tools:context=".ContractorDashboard">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,7 +119,6 @@ tools:context=".ContractorDashboard">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/background_card">
 
@@ -150,5 +149,40 @@ tools:context=".ContractorDashboard">
                 app:layout_constraintStart_toStartOf="@+id/imageViewGenerateBill"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewGenerateBill" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_card">
+
+            <ImageView
+                android:id="@+id/imageViewCheckFeedback"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/feedback" />
+
+            <TextView
+                android:id="@+id/textViewCheckFeedback"
+                android:layout_width="110dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="Check Feedback"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewCheckFeedback"
+                app:layout_constraintStart_toStartOf="@+id/imageViewCheckFeedback"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewCheckFeedback" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
 </LinearLayout>

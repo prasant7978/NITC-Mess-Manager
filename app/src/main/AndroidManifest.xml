@@ -18,6 +18,9 @@
             android:exported="false"
             android:parentActivityName=".StudentDashboardActivity"/>
         <activity
+            android:name=".GenerateBill"
+            android:exported="false" />
+        <activity
             android:name=".PaymentActivity"
             android:exported="false"
             android:parentActivityName=".StudentDashboardActivity" />
