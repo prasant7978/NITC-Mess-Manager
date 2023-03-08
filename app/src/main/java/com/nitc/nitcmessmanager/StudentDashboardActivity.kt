@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +22,8 @@ class StudentDashboardActivity : AppCompatActivity() {
     private lateinit var dashboardBinding: ActivityStudentDashboardBinding
     var db : FirebaseDatabase = FirebaseDatabase.getInstance()
     var ref = db.reference.child("students")
+    var messName : String = ""
+    var studentName : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,8 @@ class StudentDashboardActivity : AppCompatActivity() {
                 for(ds in snapshot.children) {
                     Log.d("debug",ds.child("studentName").value.toString())
                     dashboardBinding.textViewName.text = ds.child("studentName").value.toString()
+                    studentName = ds.child("studentName").value.toString()
+                    messName = ds.child("messEnrolled").value.toString()
                 }
             }
 
@@ -53,6 +59,18 @@ class StudentDashboardActivity : AppCompatActivity() {
         dashboardBinding.constraintLayoutPayment.setOnClickListener {
             val intent = Intent(this@StudentDashboardActivity,PaymentActivity::class.java)
             startActivity(intent)
+        }
+
+        dashboardBinding.buttonFeedback.setOnClickListener {
+            if(messName.isEmpty()){
+                Snackbar.make(dashboardBinding.linearLayoutStudentDashboard,"You have not enrolled in any mess yet!",Snackbar.LENGTH_INDEFINITE).setAction("Close", View.OnClickListener { }).show()
+            }
+            else {
+                val intent = Intent(this@StudentDashboardActivity, StudentFeedback::class.java)
+                intent.putExtra("studentName", studentName)
+                intent.putExtra("messName", messName)
+                startActivity(intent)
+            }
         }
     }
 

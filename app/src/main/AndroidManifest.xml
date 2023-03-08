@@ -14,9 +14,13 @@
         android:theme="@style/Theme.NITCMessManager"
         tools:targetApi="31">
         <activity
-            android:name=".PaymentActivity"
+            android:name=".StudentFeedback"
             android:exported="false"
             android:parentActivityName=".StudentDashboardActivity"/>
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:parentActivityName=".StudentDashboardActivity" />
         <activity
             android:name=".StudentUpdateProfileActivity"
             android:exported="false"
