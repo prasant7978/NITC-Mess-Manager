@@ -1,4 +1,4 @@
-package com.nitc.nitcmessmanager
+package com.nitc.nitcmessmanager.student
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +14,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.nitc.nitcmessmanager.authentication.LoginActivity
+import com.nitc.nitcmessmanager.R
 //import com.google.firebase.database.R
 import com.nitc.nitcmessmanager.databinding.ActivityStudentDashboardBinding
 
@@ -52,12 +54,12 @@ class StudentDashboardActivity : AppCompatActivity() {
         })
 
         dashboardBinding.studentProfile.setOnClickListener {
-            val intent = Intent(this@StudentDashboardActivity,StudentUpdateProfileActivity::class.java)
+            val intent = Intent(this@StudentDashboardActivity, StudentUpdateProfileActivity::class.java)
             startActivity(intent)
         }
 
         dashboardBinding.constraintLayoutPayment.setOnClickListener {
-            val intent = Intent(this@StudentDashboardActivity,PaymentActivity::class.java)
+            val intent = Intent(this@StudentDashboardActivity, PaymentActivity::class.java)
             startActivity(intent)
         }
 
@@ -83,7 +85,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         if(item.itemId == R.id.signOut){
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(this,"Sign out is successfull", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@StudentDashboardActivity,LoginActivity::class.java)
+            val intent = Intent(this@StudentDashboardActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

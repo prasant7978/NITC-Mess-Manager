@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".StudentUpdateProfileActivity">
+    tools:context=".student.StudentUpdateProfileActivity">
 
     <ImageView
         android:id="@+id/imageView3"

@@ -1,9 +1,9 @@
-package com.nitc.nitcmessmanager
+package com.nitc.nitcmessmanager.student
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,8 +32,10 @@ class StudentFeedback : AppCompatActivity() {
         feedbackBinding.buttonSend.setOnClickListener {
             feedbackBinding.buttonSend.isClickable = false
             val msg = feedbackBinding.feedbackMessage.text.toString()
-
-            sendFeedback(msg)
+            if(msg.isEmpty())
+                Toast.makeText(this,"Please write any feedback to submit",Toast.LENGTH_SHORT).show()
+            else
+                sendFeedback(msg)
         }
     }
 

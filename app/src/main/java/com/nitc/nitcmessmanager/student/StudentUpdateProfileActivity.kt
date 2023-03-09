@@ -1,4 +1,4 @@
-package com.nitc.nitcmessmanager
+package com.nitc.nitcmessmanager.student
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

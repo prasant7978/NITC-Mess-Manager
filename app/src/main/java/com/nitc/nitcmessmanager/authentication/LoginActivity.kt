@@ -1,4 +1,4 @@
-package com.nitc.nitcmessmanager
+package com.nitc.nitcmessmanager.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +12,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.admin.AdminDashboardActivity
+import com.nitc.nitcmessmanager.contractor.ContractorDashboard
 import com.nitc.nitcmessmanager.databinding.ActivityLoginBinding
+import com.nitc.nitcmessmanager.student.StudentDashboardActivity
 
 class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -36,7 +40,7 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         loginBinding.progressBarLogin.visibility = View.INVISIBLE
 
-        val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.user_type,android.R.layout.simple_spinner_item)
+        val arrayAdapter = ArrayAdapter.createFromResource(this, R.array.user_type,android.R.layout.simple_spinner_item)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         loginBinding.spinner.adapter=arrayAdapter
 
@@ -52,27 +56,27 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         loginBinding.textViewSignup.setOnClickListener {
-            val intent = Intent(this@LoginActivity,SignUpActivity::class.java)
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
 
         loginBinding.textViewForgotPassword.setOnClickListener {
-            val intent = Intent(this@LoginActivity,ForgotPasswordActivity::class.java)
+            val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//
-//        val user = auth.currentUser
-//        if(user != null){
-//            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+
+        val user = auth.currentUser
+        if(user != null){
+            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,AdminDashboardActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
     private fun signinWithFirebase(email:String, pass:String, userType:String){
         loginBinding.buttonSignin.isClickable = false
@@ -138,7 +142,7 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
-                                                        val intent = Intent(this@LoginActivity, AdminDashboard::class.java)
+                                                        val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
                                                         startActivity(intent)
                                                         loginBinding.buttonSignin.isClickable = true
                                                         loginBinding.progressBarLogin.visibility = View.INVISIBLE
