@@ -30,11 +30,16 @@ class SignUpActivity : AppCompatActivity() {
 
         signupBinding.buttonSignup.setOnClickListener {
             val name = signupBinding.editTextSignupName.text.toString()
-            val roll = signupBinding.editTextSignupRollno.text.toString()
+            val roll = signupBinding.editTextSignupRollno.text.toString().uppercase()
             val email = signupBinding.editTextSignupEmail.text.toString()
             val password = signupBinding.editTextSignupPassword.text.toString()
 
-            signupWithFirebase(email,password,name,roll)
+            if(name.isEmpty() || email.isEmpty() ||password.isEmpty() ||roll.isEmpty()){
+                Toast.makeText(this,"Please provide complete information",Toast.LENGTH_SHORT).show()
+            }
+            else {
+                signupWithFirebase(email,password,name,roll)
+            }
         }
     }
 

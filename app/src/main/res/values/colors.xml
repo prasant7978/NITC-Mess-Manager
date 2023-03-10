@@ -10,4 +10,7 @@
     <color name="main_color">#3A98B9</color>
     <color name="card_back">#0A2647</color>
     <color name="text_input_back">#C7E8CA</color>
+    <color name="text_input_back_signup">#FFCEFE</color>
+    <color name="button_add">#38E54D</color>
+    <color name="button_delete">#FF0303</color>
 </resources>

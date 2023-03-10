@@ -13,8 +13,8 @@
         android:id="@+id/cardViewName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:cardBackgroundColor="@color/text_input_back"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="@color/text_input_back_signup"
         app:cardCornerRadius="25dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:hint="Name"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/text_input_back"
+            app:boxBackgroundColor="@color/text_input_back_signup"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -47,7 +47,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/text_input_back"
+        app:cardBackgroundColor="@color/text_input_back_signup"
         app:cardCornerRadius="25dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +57,7 @@
             android:layout_height="match_parent"
             android:hint="Email"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/text_input_back"
+            app:boxBackgroundColor="@color/text_input_back_signup"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -82,7 +82,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/text_input_back"
+        app:cardBackgroundColor="@color/text_input_back_signup"
         app:cardCornerRadius="25dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +92,7 @@
             android:layout_height="match_parent"
             android:hint="Password"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/text_input_back"
+            app:boxBackgroundColor="@color/text_input_back_signup"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
             app:endIconMode="password_toggle"
@@ -117,7 +117,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/text_input_back"
+        app:cardBackgroundColor="@color/text_input_back_signup"
         app:cardCornerRadius="25dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +127,7 @@
             android:layout_height="match_parent"
             android:hint="Roll No"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/text_input_back"
+            app:boxBackgroundColor="@color/text_input_back_signup"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -150,7 +150,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/text_input_back"
+        app:cardBackgroundColor="@color/text_input_back_signup"
         app:cardCornerRadius="25dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -160,7 +160,7 @@
             android:layout_height="match_parent"
             android:hint="Mess Name"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/text_input_back"
+            app:boxBackgroundColor="@color/text_input_back_signup"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -179,12 +179,26 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonUpdateStudent"
+        android:id="@+id/buttonAddStudent"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
         android:letterSpacing="0"
-        android:text="Update Student"
+        android:text="Add Student"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@color/button_add"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonClearAll"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:letterSpacing="0"
+        android:text="Clear All"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -198,7 +212,7 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:visibility="invisible" />
 
 </LinearLayout>
