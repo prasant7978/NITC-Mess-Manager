@@ -1,7 +1,8 @@
-package com.nitc.nitcmessmanager
+package com.nitc.nitcmessmanager.contractor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nitc.nitcmessmanager.R
 
 class BillGenerated : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -63,24 +63,4 @@ class AdminDashboardFragment : Fragment() {
         })
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setHasOptionsMenu(true)
-//    }
-//
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.menu_signout,menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(item.itemId == R.id.signOut){
-//            FirebaseAuth.getInstance().signOut()
-//            Toast.makeText(activity,"Sign out is successfull", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-//        return true
-//    }
 }

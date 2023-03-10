@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_color">#3A98B9</color>
     <color name="card_back">#0A2647</color>
+    <color name="text_input_back">#C7E8CA</color>
 </resources>

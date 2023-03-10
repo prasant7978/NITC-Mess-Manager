@@ -14,7 +14,7 @@
         android:theme="@style/Theme.NITCMessManager"
         tools:targetApi="31">
         <activity
-            android:name=".BillGenerated"
+            android:name=".contractor.BillGenerated"
             android:exported="false" />
         <activity
             android:name=".student.StudentFeedback"
