@@ -13,7 +13,7 @@
         android:id="@+id/cardViewName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -190,6 +190,20 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="@color/main_color"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonDeleteStudent"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:letterSpacing="0"
+        android:text="Delete Student"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@color/button_delete"
         app:strokeColor="@color/white"
         app:strokeWidth="1dp" />
 

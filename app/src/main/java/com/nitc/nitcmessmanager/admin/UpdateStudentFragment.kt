@@ -1,10 +1,14 @@
 package com.nitc.nitcmessmanager.admin
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -13,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nitc.nitcmessmanager.R
 import com.nitc.nitcmessmanager.databinding.FragmentUpdateStudentBinding
+import com.nitc.nitcmessmanager.model.Student
 
 class UpdateStudentFragment : Fragment() {
 
@@ -23,6 +28,8 @@ class UpdateStudentFragment : Fragment() {
     private var messBill : Int = 0
     private var paymentStatus : String = ""
     private var uid : String = ""
+
+    lateinit var student: Student
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +43,10 @@ class UpdateStudentFragment : Fragment() {
             updateStudentBinding.buttonUpdateStudent.isCheckable = false
             updateStudentBinding.progressBar.visibility = View.VISIBLE
             updateStudentDetails()
+        }
+
+        updateStudentBinding.buttonDeleteStudent.setOnClickListener {
+            showAlertMessage()
         }
 
         return updateStudentBinding.root
@@ -91,5 +102,56 @@ class UpdateStudentFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun deleteStudent(){
+        reference.child(uid).removeValue().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                val auth = FirebaseAuth.getInstance()
+
+                reference.orderByChild("studentId").equalTo(uid).addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for(ds in snapshot.children){
+                            student = ds.getValue(Student::class.java)!!
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+
+
+                clearAllTextArea()
+                Snackbar.make(updateStudentBinding.linearLayout,"The student has been deleted",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else{
+                Snackbar.make(updateStudentBinding.linearLayout,"The deletion was not successful, Please try again!",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+        }
+    }
+
+    private fun showAlertMessage(){
+        val dialog = activity?.let { AlertDialog.Builder(it) }
+        dialog?.setCancelable(false)
+        dialog?.setTitle("Delete Student")
+        dialog?.setMessage("Are you sure you want to delete this student ?")
+        dialog?.setNegativeButton("No", DialogInterface.OnClickListener{ dialog, which ->
+            dialog.cancel()
+        })
+        dialog?.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            deleteStudent()
+        })
+        dialog?.create()?.show()
+    }
+
+    fun clearAllTextArea(){
+        updateStudentBinding.textInputName.setText("")
+        updateStudentBinding.textInputEmail.setText("")
+        updateStudentBinding.textInputPass.setText("")
+        updateStudentBinding.textInputRoll.setText("")
+        updateStudentBinding.textInputMessName.setText("")
     }
 }

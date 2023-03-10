@@ -52,4 +52,8 @@ class StudentAdapter(val studentList : ArrayList<Student>) : RecyclerView.Adapte
                     .commit()
         }
     }
+
+    fun getStudentId(position: Int) : String{
+        return studentList[position].studentId
+    }
 }

@@ -60,8 +60,11 @@ class AddStudentFragment : Fragment() {
                 reference.child(uid).setValue(student)
 
                 Snackbar.make(addStudentBinding.linearLayout,"Student account created",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+                clearAllTextArea()
             }
-            clearAllTextArea()
+            else{
+                Toast.makeText(activity,task.exception?.localizedMessage,Toast.LENGTH_LONG).show()
+            }
             addStudentBinding.buttonAddStudent.isCheckable = true
             addStudentBinding.progressBar.visibility = View.INVISIBLE
         }
