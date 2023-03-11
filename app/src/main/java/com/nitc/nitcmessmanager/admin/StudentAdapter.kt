@@ -10,7 +10,8 @@ import com.nitc.nitcmessmanager.R
 import com.nitc.nitcmessmanager.databinding.ItemStudentBinding
 import com.nitc.nitcmessmanager.model.Student
 
-class StudentAdapter(val studentList : ArrayList<Student>) : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(){
+class StudentAdapter(private var studentList : ArrayList<Student>) : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>(){
+
     class StudentViewHolder(val adapterBinding : ItemStudentBinding) : RecyclerView.ViewHolder(adapterBinding.root){
         val name : TextView = adapterBinding.name
         val roll : TextView = adapterBinding.textViewRollNo
@@ -55,5 +56,10 @@ class StudentAdapter(val studentList : ArrayList<Student>) : RecyclerView.Adapte
 
     fun getStudentId(position: Int) : String{
         return studentList[position].studentId
+    }
+
+    fun searchByRoll(searchList : ArrayList<Student>){
+        studentList = searchList
+        notifyDataSetChanged()
     }
 }

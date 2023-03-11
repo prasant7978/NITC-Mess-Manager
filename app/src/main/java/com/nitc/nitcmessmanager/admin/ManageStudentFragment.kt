@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.SearchView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +45,30 @@ class ManageStudentFragment : Fragment() {
             fragmentTransaction.commit()
         }
 
+        manageStudentBinding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    searchList(newText)
+                    return true
+                }
+            }
+        )
+
         return manageStudentBinding.root
+    }
+
+    fun searchList(text : String){
+        val searchList = ArrayList<Student>()
+        for(student in studentList){
+            if(student.studentRollNo.lowercase().contains(text.lowercase())){
+                searchList.add(student)
+            }
+        }
+        studentAdapter.searchByRoll(searchList)
     }
 
     private fun retrieveStudentListFromDb(){
