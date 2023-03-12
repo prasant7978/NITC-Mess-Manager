@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/manage_student_back"
-    tools:context=".admin.ManageStudentFragment">
+    android:background="@drawable/manage_contractor_bg"
+    tools:context=".admin.ManageStudentFragment"
+    android:id="@+id/constraintLayout">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/textViewAddStudent"
+        android:id="@+id/textViewAddContractor"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="3dp"
         android:elevation="2dp"
         android:gravity="center"
         android:letterSpacing="0"
-        android:text="Add Student"
+        android:text="Add Contractor"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -40,22 +41,22 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/search_shape"
-        app:queryBackground="@android:color/transparent"
         android:focusable="false"
         app:closeIcon="@drawable/icon_close"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewStudentList"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewContractorList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewAddStudent"
-        app:queryHint="Search by roll"
+        app:layout_constraintTop_toBottomOf="@id/textViewAddContractor"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Search by mess name"
         app:searchHintIcon="@null"
-        app:searchIcon="@drawable/icon_search"/>
+        app:searchIcon="@drawable/icon_search" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewStudentList"
+        android:id="@+id/recyclerViewContractorList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="3dp"
@@ -63,5 +64,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search"
-        tools:listitem="@layout/item_student" />
+        tools:listitem="@layout/item_contractor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

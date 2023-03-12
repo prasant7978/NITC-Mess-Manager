@@ -40,7 +40,8 @@ class UpdateStudentFragment : Fragment() {
         receiveStudentDetails()
 
         updateStudentBinding.buttonUpdateStudent.setOnClickListener {
-            updateStudentBinding.buttonUpdateStudent.isCheckable = false
+            updateStudentBinding.buttonUpdateStudent.isClickable = false
+            updateStudentBinding.buttonDeleteStudent.isClickable = false
             updateStudentBinding.progressBar.visibility = View.VISIBLE
             updateStudentDetails()
         }
@@ -80,7 +81,8 @@ class UpdateStudentFragment : Fragment() {
                 retrieveDetailsFromDb()
                 Snackbar.make(updateStudentBinding.linearLayout,"The user has been updated successfully", Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
             }
-            updateStudentBinding.buttonUpdateStudent.isCheckable = true
+            updateStudentBinding.buttonUpdateStudent.isClickable = true
+            updateStudentBinding.buttonDeleteStudent.isClickable = true
             updateStudentBinding.progressBar.visibility = View.INVISIBLE
         }
     }
@@ -122,10 +124,9 @@ class UpdateStudentFragment : Fragment() {
 
                 })
 
-
-
                 clearAllTextArea()
                 Snackbar.make(updateStudentBinding.linearLayout,"The student has been deleted",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+                requireActivity().supportFragmentManager.popBackStack()
             }
             else{
                 Snackbar.make(updateStudentBinding.linearLayout,"The deletion was not successful, Please try again!",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()

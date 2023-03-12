@@ -18,7 +18,6 @@ import com.nitc.nitcmessmanager.R
 import com.nitc.nitcmessmanager.databinding.FragmentManageStudentBinding
 import com.nitc.nitcmessmanager.model.Student
 
-
 class ManageStudentFragment : Fragment() {
 
     lateinit var manageStudentBinding: FragmentManageStudentBinding
@@ -47,7 +46,8 @@ class ManageStudentFragment : Fragment() {
 
         manageStudentBinding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    manageStudentBinding.search.clearFocus()
                     return false
                 }
 
