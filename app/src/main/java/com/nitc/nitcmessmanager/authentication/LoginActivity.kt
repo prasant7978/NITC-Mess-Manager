@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
     val studentReference = db.reference.child("students")
     val adminReference = db.reference.child("admin")
-    val contractorReference = db.reference.child("mess_contractor")
+    val contractorReference = db.reference.child("contractors")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,10 +102,55 @@ class LoginActivity : AppCompatActivity() {
 
         val user = auth.currentUser
         if(user != null){
-            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,AdminDashboardActivity::class.java)
-            startActivity(intent)
-            finish()
+            val uid = user.uid
+
+            studentReference.orderByChild("studentId").equalTo(uid)
+                .addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.exists()){
+                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity,StudentDashboardActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+            adminReference.orderByChild("adminId").equalTo(uid)
+                .addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.exists()){
+                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity,AdminDashboardActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+            contractorReference.orderByChild("contractorId").equalTo(uid)
+                .addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.exists()){
+                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity,ContractorDashboard::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
         }
     }
 
@@ -161,6 +206,7 @@ class LoginActivity : AppCompatActivity() {
 
                     })
             }
+
             "Admin" -> {
                 adminReference.orderByChild("adminEmail").equalTo(email)
                     .addListenerForSingleValueEvent(object : ValueEventListener{
@@ -213,12 +259,65 @@ class LoginActivity : AppCompatActivity() {
 
                     })
             }
+
             "Mess Contractor" -> {
-                loginBinding.buttonSignin.isClickable = true
-                loginBinding.progressBarLogin.visibility = View.INVISIBLE
-                val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
-                startActivity(intent)
-                finish()
+                contractorReference.orderByChild("contractorEmail").equalTo(email)
+                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if(snapshot.exists()){
+                                contractorReference.orderByChild("contractorPassword").equalTo(pass)
+                                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if(snapshot.exists()){
+                                                auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+                                                    if (task.isSuccessful) {
+                                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+                                                        val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
+                                                        startActivity(intent)
+                                                        loginBinding.buttonSignin.isClickable = true
+                                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                                                        finish()
+                                                    } else {
+                                                        Toast.makeText(
+                                                            applicationContext,
+                                                            task.exception?.localizedMessage.toString(),
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                Toast.makeText(applicationContext, "Wrong Credentials", Toast.LENGTH_SHORT).show()
+                                            }
+                                            loginBinding.buttonSignin.isClickable = true
+                                            loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            TODO("Not yet implemented")
+                                        }
+
+                                    })
+                            }
+                            else{
+                                Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+                                loginBinding.buttonSignin.isClickable = true
+                                loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+
+
+//                loginBinding.buttonSignin.isClickable = true
+//                loginBinding.progressBarLogin.visibility = View.INVISIBLE
+//                val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
+//                startActivity(intent)
+//                finish()
             }
             "" -> {
                 loginBinding.buttonSignin.isClickable = true
