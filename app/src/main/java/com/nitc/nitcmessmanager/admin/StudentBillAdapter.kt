@@ -29,8 +29,10 @@ class StudentBillAdapter(private var dueList: ArrayList<Student>) : RecyclerView
         holder.adapterBinding.studentName.text = dueList[position].studentName
         holder.adapterBinding.studentRoll.text = dueList[position].studentRollNo
         holder.adapterBinding.messDue.text = dueList[position].messBill.toString()
-
-
+        if(dueList[position].messEnrolled == "")
+            holder.adapterBinding.messEnrolled.text = "Not Enrolled yet"
+        else
+            holder.adapterBinding.messEnrolled.text = dueList[position].messEnrolled
     }
 
     fun searchByRoll(searchList : ArrayList<Student>){

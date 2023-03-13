@@ -1,10 +1,7 @@
 package com.nitc.nitcmessmanager.admin
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -14,8 +11,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nitc.nitcmessmanager.R
-import com.nitc.nitcmessmanager.authentication.LoginActivity
-import com.nitc.nitcmessmanager.databinding.ActivityAdminDashboardBinding
 import com.nitc.nitcmessmanager.databinding.FragmentAdminDashboardBinding
 
 class AdminDashboardFragment : Fragment() {
@@ -57,7 +52,7 @@ class AdminDashboardFragment : Fragment() {
         adminDashboardBinding.manageBill.setOnClickListener {
             val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-            val manageBillFragment = ManageBillFragment()
+            val manageBillFragment = ViewBillFragment()
 
             fragmentTransaction.replace(R.id.frameLayout,manageBillFragment)
             fragmentTransaction.addToBackStack(null)

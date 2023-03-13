@@ -97,17 +97,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//
-//        val user = auth.currentUser
-//        if(user != null){
-//            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this,AdminDashboardActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+
+        val user = auth.currentUser
+        if(user != null){
+            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,AdminDashboardActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
     private fun signinWithFirebase(email:String, pass:String, userType:String){
         loginBinding.buttonSignin.isClickable = false

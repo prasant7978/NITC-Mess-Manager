@@ -11,13 +11,12 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.nitc.nitcmessmanager.R
-import com.nitc.nitcmessmanager.databinding.FragmentManageBillBinding
+import com.nitc.nitcmessmanager.databinding.FragmentViewBillBinding
 import com.nitc.nitcmessmanager.model.Student
 
-class ManageBillFragment : Fragment() {
+class ViewBillFragment : Fragment() {
 
-    lateinit var mangeBillBinding: FragmentManageBillBinding
+    lateinit var mangeBillBinding: FragmentViewBillBinding
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
     val ref = db.reference.child("students")
     val studentList = ArrayList<Student>()
@@ -27,7 +26,7 @@ class ManageBillFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mangeBillBinding = FragmentManageBillBinding.inflate(inflater,container,false)
+        mangeBillBinding = FragmentViewBillBinding.inflate(inflater,container,false)
 
         retrievePaymentDetailsFromDb()
 
