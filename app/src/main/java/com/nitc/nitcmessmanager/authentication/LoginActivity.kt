@@ -3,10 +3,14 @@ package com.nitc.nitcmessmanager.authentication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatRadioButton
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,10 +22,10 @@ import com.nitc.nitcmessmanager.contractor.ContractorDashboard
 import com.nitc.nitcmessmanager.databinding.ActivityLoginBinding
 import com.nitc.nitcmessmanager.student.StudentDashboardActivity
 
-class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class LoginActivity : AppCompatActivity() {
 
     lateinit var loginBinding : ActivityLoginBinding
-    lateinit var userType : String
+    private var userType : String = "Student"
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
     val studentReference = db.reference.child("students")
@@ -36,13 +40,40 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         setContentView(view)
 
-        loginBinding.spinner.onItemSelectedListener = this
-
         loginBinding.progressBarLogin.visibility = View.INVISIBLE
 
-        val arrayAdapter = ArrayAdapter.createFromResource(this, R.array.user_type,android.R.layout.simple_spinner_item)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        loginBinding.spinner.adapter=arrayAdapter
+        loginBinding.adminLoginTypeButton.setOnClickListener {
+            loginBinding.adminLoginTypeImage.setBackgroundResource(R.drawable.login_type_shape)
+            loginBinding.adminLoginTypeButton.setTextColor(Color.WHITE)
+            loginBinding.studentLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.studentLoginTypeButton.setTextColor(Color.BLACK)
+            loginBinding.contractorLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.contractorLoginTypeButton.setTextColor(Color.BLACK)
+
+            userType = "Admin"
+        }
+
+        loginBinding.studentLoginTypeButton.setOnClickListener {
+            loginBinding.adminLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.adminLoginTypeButton.setTextColor(Color.BLACK)
+            loginBinding.studentLoginTypeImage.setBackgroundResource(R.drawable.login_type_shape)
+            loginBinding.studentLoginTypeButton.setTextColor(Color.WHITE)
+            loginBinding.contractorLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.contractorLoginTypeButton.setTextColor(Color.BLACK)
+
+            userType = "Student"
+        }
+
+        loginBinding.contractorLoginTypeButton.setOnClickListener {
+            loginBinding.adminLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.adminLoginTypeButton.setTextColor(Color.BLACK)
+            loginBinding.studentLoginTypeImage.setBackgroundResource(R.drawable.login_type_transparent_bg_shape)
+            loginBinding.studentLoginTypeButton.setTextColor(Color.BLACK)
+            loginBinding.contractorLoginTypeImage.setBackgroundResource(R.drawable.login_type_shape)
+            loginBinding.contractorLoginTypeButton.setTextColor(Color.WHITE)
+
+            userType = "Mess Contractor"
+        }
 
         loginBinding.buttonSignin.setOnClickListener {
             val userEmail = loginBinding.editTextLoginEmail.text.toString()
@@ -66,17 +97,17 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        val user = auth.currentUser
-        if(user != null){
-            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,AdminDashboardActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        val user = auth.currentUser
+//        if(user != null){
+//            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+//            val intent = Intent(this,AdminDashboardActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+//    }
 
     private fun signinWithFirebase(email:String, pass:String, userType:String){
         loginBinding.buttonSignin.isClickable = false
@@ -189,16 +220,12 @@ class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 startActivity(intent)
                 finish()
             }
+            "" -> {
+                loginBinding.buttonSignin.isClickable = true
+                loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                Toast.makeText(applicationContext, "Select a user type", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if(parent != null){
-           userType  = parent.getItemAtPosition(position).toString()
-        }
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
 }

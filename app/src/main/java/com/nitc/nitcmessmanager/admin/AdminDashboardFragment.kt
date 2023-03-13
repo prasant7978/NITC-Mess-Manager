@@ -54,6 +54,16 @@ class AdminDashboardFragment : Fragment() {
             fragmentTransaction.commit()
         }
 
+        adminDashboardBinding.manageBill.setOnClickListener {
+            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+            val manageBillFragment = ManageBillFragment()
+
+            fragmentTransaction.replace(R.id.frameLayout,manageBillFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         return adminDashboardBinding.root
     }
 
