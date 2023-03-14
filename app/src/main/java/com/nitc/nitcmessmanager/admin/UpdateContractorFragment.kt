@@ -38,6 +38,8 @@ class UpdateContractorFragment : Fragment() {
 
         receiveContractorDetails()
 
+        updateContractorBinding.textInputAvailability.isEnabled = false
+
         updateContractorBinding.buttonUpdateContractor.setOnClickListener {
             updateContractorBinding.buttonUpdateContractor.isClickable = false
             updateContractorBinding.buttonDeleteContractor.isClickable = false

@@ -94,7 +94,10 @@ class UpdateStudentFragment : Fragment() {
                     updateStudentBinding.textInputName.setText(ds.child("studentName").value.toString())
                     updateStudentBinding.textInputEmail.setText(ds.child("studentEmail").value.toString())
                     updateStudentBinding.textInputRoll.setText(ds.child("studentRollNo").value.toString())
-                    updateStudentBinding.textInputMessName.setText(ds.child("messEnrolled").value.toString())
+                    if(ds.child("messEnrolled").value.toString() == "")
+                        updateStudentBinding.textInputMessName.setText("Not enrolled yet")
+                    else
+                        updateStudentBinding.textInputMessName.setText(ds.child("messEnrolled").value.toString())
                     updateStudentBinding.textInputPass.setText(ds.child("studentPassword").value.toString())
                 }
             }

@@ -16,4 +16,5 @@
     <color name="search_box">#3C4048</color>
     <color name="contractor_card_background">#7D9D9C</color>
     <color name="student_bill_card_bg">#423F3E</color>
+    <color name="select_mess_card_bg">#C9EEFF</color>
 </resources>

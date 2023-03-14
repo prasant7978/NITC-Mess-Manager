@@ -1,16 +1,16 @@
 package com.nitc.nitcmessmanager.model
 
-data class Contractor(val contractorId : String = "",
-                      val contractorEmail : String = "",
-                      val contractorPassword : String = "",
-                      val userType : String = "",
-                      val contractorName : String = "",
-                      val costPerDay : Int = 0,
-                      val messName : String = "",
-                      val foodType : String = "",
-                      val capacity : Int = 0,
-                      val availability : Int = 0,
-                      val feedbackReceived : ArrayList<Feedback> = ArrayList(),
-                      val studentEnrolled : ArrayList<Student> = ArrayList()
+data class Contractor(var contractorId : String = "",
+                      var contractorEmail : String = "",
+                      var contractorPassword : String = "",
+                      var userType : String = "",
+                      var contractorName : String = "",
+                      var costPerDay : Int = 0,
+                      var messName : String = "",
+                      var foodType : String = "",
+                      var capacity : Int = 0,
+                      var availability : Int = 0,
+                      var feedbackReceived : ArrayList<Feedback> = ArrayList(),
+                      var studentEnrolled : ArrayList<Student> = ArrayList()
 ) {
 }

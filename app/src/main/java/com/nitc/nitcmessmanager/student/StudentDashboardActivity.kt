@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -16,16 +18,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nitc.nitcmessmanager.authentication.LoginActivity
 import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.admin.AdminDashboardFragment
 //import com.google.firebase.database.R
 import com.nitc.nitcmessmanager.databinding.ActivityStudentDashboardBinding
 
 class StudentDashboardActivity : AppCompatActivity() {
 
-    private lateinit var dashboardBinding: ActivityStudentDashboardBinding
-    var db : FirebaseDatabase = FirebaseDatabase.getInstance()
-    var ref = db.reference.child("students")
-    var messName : String = ""
-    var studentName : String = ""
+    lateinit var dashboardBinding : ActivityStudentDashboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,45 +34,13 @@ class StudentDashboardActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val fragmentManager : FragmentManager = supportFragmentManager
+        val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+        val studentDashboardFragment = StudentDashboardFragment()
 
-        ref.orderByChild("studentId").equalTo(uid).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(ds in snapshot.children) {
-                    Log.d("debug",ds.child("studentName").value.toString())
-                    dashboardBinding.textViewName.text = ds.child("studentName").value.toString()
-                    studentName = ds.child("studentName").value.toString()
-                    messName = ds.child("messEnrolled").value.toString()
-                }
-            }
+        fragmentTransaction.add(R.id.frameLayout,studentDashboardFragment)
+        fragmentTransaction.commit()
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-        dashboardBinding.studentProfile.setOnClickListener {
-            val intent = Intent(this@StudentDashboardActivity, StudentUpdateProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        dashboardBinding.constraintLayoutPayment.setOnClickListener {
-            val intent = Intent(this@StudentDashboardActivity, PaymentActivity::class.java)
-            startActivity(intent)
-        }
-
-        dashboardBinding.buttonFeedback.setOnClickListener {
-            if(messName.isEmpty()){
-                Snackbar.make(dashboardBinding.linearLayoutStudentDashboard,"You have not enrolled in any mess yet!",Snackbar.LENGTH_INDEFINITE).setAction("Close", View.OnClickListener { }).show()
-            }
-            else {
-                val intent = Intent(this@StudentDashboardActivity, StudentFeedback::class.java)
-                intent.putExtra("studentName", studentName)
-                intent.putExtra("messName", messName)
-                startActivity(intent)
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

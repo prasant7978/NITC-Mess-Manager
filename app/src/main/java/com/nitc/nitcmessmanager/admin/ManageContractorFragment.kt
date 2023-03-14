@@ -22,7 +22,6 @@ import com.nitc.nitcmessmanager.model.Student
 class ManageContractorFragment : Fragment() {
 
     lateinit var manageContractorBinding: FragmentManageContractorBinding
-//    private val adminViewModel = ViewModelProvider(requireActivity())[AdminViewModel::class.java]
     val contractorList = ArrayList<Contractor>()
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
     val ref = db.reference.child("contractors")

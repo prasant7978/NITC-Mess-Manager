@@ -17,20 +17,8 @@
             android:name=".contractor.BillGenerated"
             android:exported="false" />
         <activity
-            android:name=".student.StudentFeedback"
-            android:exported="false"
-            android:parentActivityName=".student.StudentDashboardActivity"/>
-        <activity
             android:name=".contractor.GenerateBill"
             android:exported="false" />
-        <activity
-            android:name=".student.PaymentActivity"
-            android:exported="false"
-            android:parentActivityName=".student.StudentDashboardActivity" />
-        <activity
-            android:name=".student.StudentUpdateProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".student.StudentDashboardActivity" />
         <activity
             android:name=".contractor.ContractorDashboard"
             android:exported="false" />

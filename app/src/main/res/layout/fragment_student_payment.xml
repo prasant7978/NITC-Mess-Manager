@@ -5,7 +5,7 @@
     android:id="@+id/constraintPaymentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.PaymentActivity">
+    tools:context=".student.StudentPaymentFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

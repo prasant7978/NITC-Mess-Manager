@@ -26,6 +26,7 @@ class AdminDashboardFragment : Fragment() {
         adminDashboardBinding = FragmentAdminDashboardBinding.inflate(inflater, container, false)
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
+
         retrieveAdminInfo(uid)
 
         adminDashboardBinding.manageStudent.setOnClickListener {
