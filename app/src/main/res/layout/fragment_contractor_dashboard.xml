@@ -27,7 +27,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:elevation="5dp"
-            app:srcCompat="@drawable/avatar" />
+            app:srcCompat="@drawable/avatar_feedback" />
 
         <TextView
             android:id="@+id/textViewContractorName"

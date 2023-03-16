@@ -51,7 +51,13 @@ class ContractorDashboardFragment : Fragment() {
         }
 
         contractorDashboardBinding.checkFeedback.setOnClickListener {
+            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+            val feedbackFragment = FeedbackFragment()
 
+            fragmentTransaction.replace(R.id.frameLayout,feedbackFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         contractorDashboardBinding.enrolledStudent.setOnClickListener {
