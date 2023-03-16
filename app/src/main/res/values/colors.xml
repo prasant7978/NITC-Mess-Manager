@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main_color">#A9A9A9</color>
+    <color name="main_color">#ECF2FF</color>
     <color name="card_back">#0A2647</color>
     <color name="text_input_back">#C7E8CA</color>
     <color name="text_input_back_signup">#FFCEFE</color>
@@ -17,4 +17,7 @@
     <color name="contractor_card_background">#7D9D9C</color>
     <color name="student_bill_card_bg">#423F3E</color>
     <color name="select_mess_card_bg">#C9EEFF</color>
+
+    <color name="contractor_dashboard_bg">#F4F4F2</color>
+    <color name="contractor_dashboard_profile_bg">#BBBFCA</color>
 </resources>
