@@ -18,6 +18,10 @@
     <color name="student_bill_card_bg">#423F3E</color>
     <color name="select_mess_card_bg">#C9EEFF</color>
 
-    <color name="contractor_dashboard_bg">#F4F4F2</color>
-    <color name="contractor_dashboard_profile_bg">#BBBFCA</color>
+    <color name="contractor_dashboard_bg">#FEFCF3</color>
+    <color name="contractor_dashboard_profile_bg">#2E4F4F</color>
+
+    <color name="primary_button">#19A7CE</color>
+
+    <color name="contractor_profile_cardview_bg">#C9EEFF</color>
 </resources>

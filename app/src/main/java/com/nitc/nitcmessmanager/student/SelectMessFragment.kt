@@ -43,47 +43,60 @@ class SelectMessFragment : Fragment() {
         selectMessBinding.textInputAvailability.isEnabled = false
 
         selectMessBinding.buttonSelectMess.setOnClickListener {
-            val studentUid  = FirebaseAuth.getInstance().currentUser?.uid.toString()
-            reference_student.orderByChild("studentId").equalTo(studentUid).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(ds in snapshot.children) {
-                        Log.d("debug",ds.child("messEnrolled").value.toString())
-                        messName = ds.child("messEnrolled").value.toString()
+            val aval = selectMessBinding.textInputAvailability.text.toString().toInt()
+            if(aval == 0){
+                Snackbar.make(selectMessBinding.constraintSelectMessLayout,"This mess is full.",
+                    Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
+            }
+            else {
+                val studentUid = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                reference_student.orderByChild("studentId").equalTo(studentUid)
+                    .addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (ds in snapshot.children) {
+                                Log.d("debug", ds.child("messEnrolled").value.toString())
+                                messName = ds.child("messEnrolled").value.toString()
 
-                        if(messName == ""){
-                            val dialog = AlertDialog.Builder(activity)
-                            dialog.setTitle("Are you sure?")
-                            dialog.setCancelable(false)
-                            dialog.setMessage("Once you enroll, you can't change it unless mess bill is generated")
-                            dialog.setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
-                                dialog.cancel()
-                            })
-                            dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
-                                selectMessBinding.buttonSelectMess.isClickable = false
-                                selectMessBinding.progressBar.visibility = View.VISIBLE
-                                addMessToStudentDb(studentUid.toString())
-                            })
-                            dialog.create().show()
+                                if (messName == "") {
+                                    val dialog = AlertDialog.Builder(activity)
+                                    dialog.setTitle("Are you sure?")
+                                    dialog.setCancelable(false)
+                                    dialog.setMessage("Once you enroll, you can't change it unless mess bill is generated")
+                                    dialog.setNegativeButton(
+                                        "No",
+                                        DialogInterface.OnClickListener { dialog, which ->
+                                            dialog.cancel()
+                                        })
+                                    dialog.setPositiveButton(
+                                        "Yes",
+                                        DialogInterface.OnClickListener { dialog, which ->
+                                            selectMessBinding.buttonSelectMess.isClickable = false
+                                            selectMessBinding.progressBar.visibility = View.VISIBLE
+                                            addMessToStudentDb(studentUid.toString())
+                                        })
+                                    dialog.create().show()
+                                } else {
+                                    val dialog = AlertDialog.Builder(activity)
+                                    dialog.setTitle("Select Mess")
+                                    dialog.setCancelable(false)
+                                    dialog.setMessage("You have already enrolled in $messName for this month")
+                                    dialog.setNegativeButton(
+                                        "OK",
+                                        DialogInterface.OnClickListener { dialog, which ->
+                                            dialog.cancel()
+                                        })
+                                    dialog.create().show()
+                                }
+                            }
                         }
-                        else{
-                            val dialog = AlertDialog.Builder(activity)
-                            dialog.setTitle("Select Mess")
-                            dialog.setCancelable(false)
-                            dialog.setMessage("You have already enrolled in $messName for this month")
-                            dialog.setNegativeButton("OK", DialogInterface.OnClickListener { dialog, which ->
-                                dialog.cancel()
-                            })
-                            dialog.create().show()
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
                         }
-                    }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
+                    })
+            }
         }
 
         return selectMessBinding.root
@@ -115,7 +128,7 @@ class SelectMessFragment : Fragment() {
                                         Snackbar.make(selectMessBinding.constraintSelectMessLayout,"You have successfully enrolled in ${student.messEnrolled}",
                                             Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
 
-                                        updateAvailabilityInCardViewFromDb(studentUid)
+                                        updateAvailabilityInCardViewFromDb()
                                     }
                                 }
 
@@ -139,7 +152,7 @@ class SelectMessFragment : Fragment() {
         selectMessBinding.progressBar.visibility = View.INVISIBLE
     }
 
-    private fun updateAvailabilityInCardViewFromDb(studentUid: String) {
+    private fun updateAvailabilityInCardViewFromDb() {
         reference_conttractor.orderByChild("contractorId").equalTo(contractorUid).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(ds in snapshot.children){

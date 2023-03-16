@@ -21,7 +21,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
-        app:backgroundTint="@color/main_color"
+        app:backgroundTint="@color/primary_button"
         app:icon="@drawable/add_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"

@@ -29,6 +29,7 @@ class UpdateContractorFragment : Fragment() {
 
     private var uid = ""
     lateinit var contractor : Contractor
+    private var slotFilled = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -118,7 +119,10 @@ class UpdateContractorFragment : Fragment() {
         map["messName"] = updateContractorBinding.textInputMessName.text.toString()
         map["foodType"] = updateContractorBinding.textInputFoodType.text.toString()
         map["capacity"] = updateContractorBinding.textInputCapacity.text.toString().toInt()
-        map["availability"] = updateContractorBinding.textInputAvailability.text.toString().toInt()
+
+        val updatedAvailability = updateContractorBinding.textInputCapacity.text.toString().toInt() - slotFilled
+
+        map["availability"] = updatedAvailability
 //        map["feedbackReceived"] = adminViewModel.feedbackList
 //        map["studentEnrolled"] = adminViewModel.studentEnrolledList
 
@@ -146,6 +150,7 @@ class UpdateContractorFragment : Fragment() {
                     updateContractorBinding.textInputFoodType.setText(ds.child("foodType").value.toString())
                     updateContractorBinding.textInputCapacity.setText(ds.child("capacity").value.toString())
                     updateContractorBinding.textInputAvailability.setText(ds.child("availability").value.toString())
+                    slotFilled = ds.child("capacity").value.toString().toInt() - ds.child("availability").value.toString().toInt()
                 }
             }
 
@@ -166,6 +171,7 @@ class UpdateContractorFragment : Fragment() {
         updateContractorBinding.textInputCapacity.setText(arguments?.getString("capacity").toString())
         updateContractorBinding.textInputAvailability.setText(arguments?.getString("availability").toString())
         uid = arguments?.getString("contractorId").toString()
+        slotFilled = arguments?.getString("capacity").toString().toInt() - arguments?.getString("availability").toString().toInt()
     }
 
 }
