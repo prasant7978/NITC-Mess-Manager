@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/main_color"
     tools:context=".student.StudentDashboardFragment">
 
     <LinearLayout
@@ -15,6 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/background_top"
         android:gravity="center"
+        android:elevation="10dp"
         android:orientation="vertical">
 
         <ImageView
@@ -29,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
+            android:elevation="5dp"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -45,6 +48,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:elevation="5dp"
             android:background="@drawable/background_card">
 
             <ImageView
@@ -80,6 +84,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:elevation="5dp"
             android:background="@drawable/background_card">
 
             <ImageView
@@ -121,6 +126,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:elevation="5dp"
             android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayoutPayment"
@@ -160,6 +166,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:elevation="5dp"
             android:background="@drawable/background_card">
 
             <ImageView
@@ -195,7 +202,8 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
-        android:backgroundTint="@color/material_dynamic_primary20"
+        android:backgroundTint="@color/primary_button"
+        android:elevation="5dp"
         android:text="FEEDBACK"
         android:textColor="@color/white"
         android:textSize="20sp" />

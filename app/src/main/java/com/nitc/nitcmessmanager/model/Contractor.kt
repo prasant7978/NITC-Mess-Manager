@@ -10,6 +10,7 @@ data class Contractor(var contractorId : String = "",
                       var foodType : String = "",
                       var capacity : Int = 0,
                       var availability : Int = 0,
+                      var totalDue : Int = 0,
                       var feedbackReceived : ArrayList<Feedback> = ArrayList(),
                       var studentEnrolled : ArrayList<Student> = ArrayList()
 ) {

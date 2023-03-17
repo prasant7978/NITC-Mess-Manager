@@ -69,7 +69,7 @@ class AddContractorFragment : Fragment() {
                 val uid = task.result.user?.uid.toString()
                 val feedBackList  = ArrayList<Feedback>()
                 val studentEnrolledList  = ArrayList<Student>()
-                val contractor = Contractor(uid,contEmail,contPass,"Contractor",contName,costPerDay.toInt(),messName,foodType,capacity.toInt(),capacity.toInt())
+                val contractor = Contractor(uid,contEmail,contPass,"Contractor",contName,costPerDay.toInt(),messName,foodType,capacity.toInt(),capacity.toInt(),0)
 
                 reference.child(uid).setValue(contractor)
 

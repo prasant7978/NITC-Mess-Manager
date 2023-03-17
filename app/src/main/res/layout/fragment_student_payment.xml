@@ -5,9 +5,11 @@
     android:id="@+id/constraintPaymentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".student.StudentPaymentFragment">
 
     <LinearLayout
+        android:elevation="10dp"
         android:id="@+id/linearLayout"
         android:layout_width="300dp"
         android:layout_height="250dp"
@@ -36,12 +38,12 @@
             android:id="@+id/textViewDues"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/outline_black"
             android:gravity="center"
             android:padding="5dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -50,7 +52,8 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="@color/material_dynamic_primary20"
+            android:elevation="5dp"
+            android:backgroundTint="@color/primary_button"
             android:text="Pay Bill"
             android:textAllCaps="false"
             android:textColor="@color/white"

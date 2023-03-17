@@ -24,4 +24,5 @@
     <color name="primary_button">#19A7CE</color>
 
     <color name="contractor_profile_cardview_bg">#C9EEFF</color>
+    <color name="generate_bill_shape_bg">#F5F0BB</color>
 </resources>

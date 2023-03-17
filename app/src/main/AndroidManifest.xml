@@ -14,12 +14,6 @@
         android:theme="@style/Theme.NITCMessManager"
         tools:targetApi="31">
         <activity
-            android:name=".contractor.BillGenerated"
-            android:exported="false" />
-        <activity
-            android:name=".contractor.GenerateBill"
-            android:exported="false" />
-        <activity
             android:name=".contractor.ContractorDashboard"
             android:exported="false" />
         <activity

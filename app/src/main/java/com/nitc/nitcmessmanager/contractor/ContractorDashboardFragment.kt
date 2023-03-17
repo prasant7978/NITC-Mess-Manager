@@ -47,7 +47,13 @@ class ContractorDashboardFragment : Fragment() {
         }
 
         contractorDashboardBinding.generateBill.setOnClickListener {
+            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+            val generateBillFragment = GenerateBillFragment()
 
+            fragmentTransaction.replace(R.id.frameLayout,generateBillFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         contractorDashboardBinding.checkFeedback.setOnClickListener {

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutCalculateBillPerStudent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color"
+    tools:context=".contractor.CalculateBillPerStudentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_generate_bill"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewCostPerDayText"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Cost Per Days"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewCostPerDayInt"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardViewCostPerDayText"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/displayCostPerDayInt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewNoOfDaysText"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewCostPerDayText">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="No. Of Days"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewNoOfDaysInt"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardViewNoOfDaysText"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewCostPerDayInt">
+
+            <EditText
+                android:id="@+id/textInputLayoutNoOfDaysInt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGenerateBill"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="60dp"
+            android:elevation="10dp"
+            android:lineSpacingExtra="0dp"
+            android:text="Generate Bill"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@color/primary_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
