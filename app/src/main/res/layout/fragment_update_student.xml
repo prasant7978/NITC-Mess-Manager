@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/main_color"
     tools:context=".admin.UpdateStudentFragment">
 
     <androidx.cardview.widget.CardView
@@ -14,6 +15,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:elevation="10dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -47,6 +49,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:elevation="10dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -82,6 +85,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:elevation="10dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -117,6 +121,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:elevation="10dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -150,6 +155,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:elevation="10dp"
         app:cardBackgroundColor="@color/text_input_back"
         app:cardCornerRadius="25dp">
 
@@ -184,28 +190,28 @@
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
         android:letterSpacing="0"
+        android:elevation="5dp"
         android:text="Update Student"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:backgroundTint="@color/main_color"
-        app:strokeColor="@color/white"
-        app:strokeWidth="1dp" />
+        app:backgroundTint="@color/primary_button"
+        app:strokeWidth="0dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonDeleteStudent"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:letterSpacing="0"
+        android:elevation="5dp"
         android:text="Delete Student"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="@color/button_delete"
-        app:strokeColor="@color/white"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="0dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

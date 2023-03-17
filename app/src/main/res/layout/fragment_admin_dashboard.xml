@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".admin.AdminDashboardFragment">
 
         <LinearLayout
@@ -11,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:background="@drawable/background_top"
+            android:elevation="10dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +30,9 @@
                 android:id="@+id/textViewAdminName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Admin"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -54,6 +56,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
+                android:elevation="5dp"
                 android:background="@drawable/background_card">
 
                 <ImageView
@@ -76,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Manage Student"
-                    android:textColor="@color/white"
+                    android:text="Manage \nStudent"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +95,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
+                android:elevation="5dp"
                 android:background="@drawable/background_card">
 
                 <ImageView
@@ -115,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Manage Contractor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -143,6 +147,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
+                android:elevation="5dp"
                 android:background="@drawable/background_card"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -168,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View Bill"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

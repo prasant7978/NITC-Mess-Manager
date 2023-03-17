@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/manage_student_back"
+    android:background="@color/main_color"
     tools:context=".admin.ManageStudentFragment">
 
     <com.google.android.material.button.MaterialButton
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="3dp"
-        android:elevation="2dp"
+        android:elevation="10dp"
         android:gravity="center"
         android:letterSpacing="0"
         android:text="Add Student"
@@ -20,7 +20,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
-        app:backgroundTint="@color/main_color"
+        app:backgroundTint="@color/primary_button"
         app:icon="@drawable/add_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
@@ -28,8 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.5"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="0dp" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
