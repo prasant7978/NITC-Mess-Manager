@@ -26,9 +26,16 @@ class ContractorDashboard : AppCompatActivity() {
 
         setContentView(view)
 
+        val userType = intent.getStringExtra("userType")
+
         val fragmentManager : FragmentManager = supportFragmentManager
         val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
         val contractorDashboardFragment = ContractorDashboardFragment()
+
+        val bundle = Bundle()
+        bundle.putString("userType",userType)
+
+        contractorDashboardFragment.arguments = bundle
 
         fragmentTransaction.add(R.id.frameLayout,contractorDashboardFragment)
         fragmentTransaction.commit()

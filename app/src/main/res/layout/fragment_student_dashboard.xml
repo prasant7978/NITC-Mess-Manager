@@ -123,6 +123,7 @@
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/showMessMenu"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"

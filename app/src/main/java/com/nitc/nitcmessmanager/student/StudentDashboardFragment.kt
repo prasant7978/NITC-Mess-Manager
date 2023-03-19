@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.contractor.ManageMessMenuFragment
 import com.nitc.nitcmessmanager.databinding.ActivityStudentDashboardBinding
 import com.nitc.nitcmessmanager.databinding.FragmentStudentDashboardBinding
 
@@ -35,6 +36,8 @@ class StudentDashboardFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
 
+        var userType = ""
+
         ref.orderByChild("studentId").equalTo(uid).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -43,6 +46,7 @@ class StudentDashboardFragment : Fragment() {
                     studentDashboardFragmentBinding.textViewName.text = ds.child("studentName").value.toString()
                     studentName = ds.child("studentName").value.toString()
                     messName = ds.child("messEnrolled").value.toString()
+                    userType = ds.child("userType").value.toString()
                 }
             }
 
@@ -67,7 +71,28 @@ class StudentDashboardFragment : Fragment() {
             val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
             val showMessListFragment = ShowMessListFragment()
 
+            val bundle = Bundle()
+            bundle.putString("userType",userType)
+
+            showMessListFragment.arguments = bundle
+
             fragmentTransaction.replace(R.id.frameLayout,showMessListFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        studentDashboardFragmentBinding.showMessMenu.setOnClickListener {
+            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+            val manageMessMenuFragment = ManageMessMenuFragment()
+
+            val bundle = Bundle()
+            bundle.putString("userType",userType)
+            bundle.putString("messName",messName)
+
+            manageMessMenuFragment.arguments = bundle
+
+            fragmentTransaction.replace(R.id.frameLayout,manageMessMenuFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

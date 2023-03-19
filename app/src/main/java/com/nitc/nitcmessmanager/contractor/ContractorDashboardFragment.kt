@@ -30,6 +30,8 @@ class ContractorDashboardFragment : Fragment() {
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
+        val userType = arguments?.getString("userType")
+
         retrieveContractorInfo(uid)
 
         contractorDashboardBinding.profile.setOnClickListener {
@@ -43,7 +45,18 @@ class ContractorDashboardFragment : Fragment() {
         }
 
         contractorDashboardBinding.messMenu.setOnClickListener {
+            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+            val manageMessMenuFragment = ManageMessMenuFragment()
 
+            val bundle = Bundle()
+            bundle.putString("usertype",userType)
+
+            manageMessMenuFragment.arguments = bundle
+
+            fragmentTransaction.replace(R.id.frameLayout,manageMessMenuFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
 
         contractorDashboardBinding.generateBill.setOnClickListener {

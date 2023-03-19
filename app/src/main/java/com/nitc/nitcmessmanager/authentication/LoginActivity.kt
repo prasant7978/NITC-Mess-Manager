@@ -171,6 +171,7 @@ class LoginActivity : AppCompatActivity() {
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                                                         val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
+                                                        intent.putExtra("userType",userType)
                                                         startActivity(intent)
                                                         loginBinding.buttonSignin.isClickable = true
                                                         loginBinding.progressBarLogin.visibility = View.INVISIBLE
@@ -273,6 +274,7 @@ class LoginActivity : AppCompatActivity() {
                                                     if (task.isSuccessful) {
                                                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                                                         val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
+                                                        intent.putExtra("userType",userType)
                                                         startActivity(intent)
                                                         loginBinding.buttonSignin.isClickable = true
                                                         loginBinding.progressBarLogin.visibility = View.INVISIBLE

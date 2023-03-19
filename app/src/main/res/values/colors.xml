@@ -17,13 +17,11 @@
     <color name="contractor_card_background">#7D9D9C</color>
     <color name="student_bill_card_bg">#D9E4DD</color>
     <color name="select_mess_card_bg">#C9EEFF</color>
-
     <color name="contractor_dashboard_bg">#FEFCF3</color>
     <color name="contractor_dashboard_profile_bg">#2E4F4F</color>
-
     <color name="primary_button">#19A7CE</color>
-
     <color name="contractor_profile_cardview_bg">#C9EEFF</color>
     <color name="generate_bill_shape_bg">#F5F0BB</color>
     <color name="add_student_input_bg">#FAF7F0</color>
+    <color name="mess_menu_card_bg">#E6E6FA</color>
 </resources>
