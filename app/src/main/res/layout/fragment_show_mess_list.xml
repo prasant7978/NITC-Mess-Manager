@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".student.ShowMessListFragment">
 
     <androidx.appcompat.widget.SearchView
@@ -36,7 +37,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Available Mess"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewMessList"
         app:layout_constraintEnd_toEndOf="parent"

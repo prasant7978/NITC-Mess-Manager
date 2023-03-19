@@ -74,6 +74,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
+                    android:elevation="5dp"
                     android:background="@drawable/background_card">
 
                     <ImageView
@@ -112,6 +113,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
+                    android:elevation="5dp"
                     android:background="@drawable/background_card">
 
                     <ImageView
@@ -163,6 +165,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
+                    android:elevation="5dp"
                     android:background="@drawable/background_card"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -203,6 +206,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
+                    android:elevation="5dp"
                     android:background="@drawable/background_card"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -257,6 +261,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
+                    android:elevation="5dp"
                     android:background="@drawable/background_card"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

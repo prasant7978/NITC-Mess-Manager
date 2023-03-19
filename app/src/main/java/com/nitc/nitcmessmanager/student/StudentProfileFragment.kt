@@ -23,6 +23,12 @@ class StudentProfileFragment : Fragment() {
     ): View? {
         studentProfileBinding = FragmentStudentProfileBinding.inflate(inflater,container,false)
 
+        studentProfileBinding.textViewStudentName.isEnabled = false
+        studentProfileBinding.textViewStudentRoll.isEnabled = false
+        studentProfileBinding.textViewMessEnrolled.isEnabled = false
+        studentProfileBinding.textViewMessBill.isEnabled = false
+        studentProfileBinding.textViewPaymentStatus.isEnabled = false
+
         getAndSet()
 
         return studentProfileBinding.root
@@ -34,17 +40,17 @@ class StudentProfileFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val student = snapshot.getValue(Student::class.java)
                 if(student != null){
-                    studentProfileBinding.textViewStudentName.setText("Name : "+student.studentName)
-                    studentProfileBinding.textViewStudentRoll.setText("Registration No : "+student.studentRollNo)
+                    studentProfileBinding.textViewStudentName.setText(student.studentName)
+                    studentProfileBinding.textViewStudentRoll.setText(student.studentRollNo)
                     if(student.messEnrolled.isEmpty())
-                        studentProfileBinding.textViewMessEnrolled.setText("Mess : Not enrolled yet")
+                        studentProfileBinding.textViewMessEnrolled.setText("Not enrolled yet")
                     else
-                        studentProfileBinding.textViewMessEnrolled.setText("Mess : "+student.messEnrolled)
-                    studentProfileBinding.textViewMessBill.setText("Due : "+student.messBill)
+                        studentProfileBinding.textViewMessEnrolled.setText(student.messEnrolled)
+                    studentProfileBinding.textViewMessBill.setText(student.messBill.toString())
                     if(student.paymentStatus == "paid")
-                        studentProfileBinding.textViewPaymentStatus.setText("Payment Status : Paid")
+                        studentProfileBinding.textViewPaymentStatus.setText("Paid")
                     else
-                        studentProfileBinding.textViewPaymentStatus.setText("Payment Status : "+student.paymentStatus)
+                        studentProfileBinding.textViewPaymentStatus.setText(student.paymentStatus)
                 }
             }
 

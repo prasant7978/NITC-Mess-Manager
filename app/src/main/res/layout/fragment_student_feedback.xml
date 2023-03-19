@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayoutFeedback"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".student.StudentFeedbackFragment">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -25,10 +26,10 @@
             android:id="@+id/feedbackMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/blue_outline_dropbox"
+            android:background="@drawable/outline_black"
             android:inputType="textMultiLine"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textCursorDrawable="@null"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -38,7 +39,8 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/material_dynamic_primary10"
+        android:elevation="10dp"
+        android:backgroundTint="@color/primary_button"
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="@color/white"

@@ -5,16 +5,18 @@
     android:id="@+id/constraintSelectMessLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".student.SelectMessFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_outline_dropbox"
+        android:background="@drawable/outline_black"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -26,6 +28,7 @@
             android:id="@+id/cardViewMessName"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/text_input_back"
             app:cardCornerRadius="10dp">
@@ -59,6 +62,7 @@
             android:id="@+id/cardViewCostPerDay"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/text_input_back"
             app:cardCornerRadius="10dp">
@@ -92,6 +96,7 @@
             android:id="@+id/cardViewFoodType"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/text_input_back"
             app:cardCornerRadius="10dp">
@@ -125,6 +130,7 @@
             android:id="@+id/cardViewAvailability"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_marginTop="10dp"
             app:cardBackgroundColor="@color/text_input_back"
             app:cardCornerRadius="10dp">
@@ -159,7 +165,8 @@
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:backgroundTint="@color/material_dynamic_primary20"
+            android:elevation="10dp"
+            android:backgroundTint="@color/primary_button"
             android:text="Select Mess"
             android:textAllCaps="false"
             android:textColor="@color/white"

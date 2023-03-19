@@ -78,8 +78,8 @@ class ManageMessMenuFragment : Fragment() {
                 }
                 .setPositiveButton("Ok"){dialog, which->
                     val selectedDay = days[0]
-                    manageMessMenuBinding.buttonSelectDay.text = selectedDay
-
+//                    manageMessMenuBinding.buttonSelectDay.text = selectedDay
+                    manageMessMenuBinding.textViewSelectedDay.text = selectedDay
                     if(userType == "Student"){
                         fetchMessMenuForStudent(messName, days[previousSelectedIndex])
                     }
@@ -96,20 +96,24 @@ class ManageMessMenuFragment : Fragment() {
             val breakfast = manageMessMenuBinding.textInputBreakfastDetails.text.toString()
             val lunch = manageMessMenuBinding.textInputLunchDetails.text.toString()
             val dinner = manageMessMenuBinding.textInputDinnerDetails.text.toString()
-
+            Log.d("menu","update clicked")
             if(breakfast.isEmpty() || lunch.isEmpty() || dinner.isEmpty()){
                 Toast.makeText(activity,"Please enter all menu details",Toast.LENGTH_SHORT).show()
             }
             else{
+                Log.d("menu","Show dialog")
                 val dialog = AlertDialog.Builder(activity)
                 dialog.setTitle("Update Mess Menu")
-                dialog.setMessage("Are you sure, want to update mess menu for $days[previousSelectedIndex] ?")
+                dialog.setCancelable(false)
+                dialog.setMessage("Are you sure, want to update mess menu for ${days[previousSelectedIndex]} ?")
                 dialog.setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
                     dialog.cancel()
                 })
                 dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                    Log.d("menu","update called")
                     updateMessMenu(uid,breakfast,lunch,dinner,days[previousSelectedIndex],previousSelectedIndex)
                 })
+                dialog.create().show()
             }
         }
 
