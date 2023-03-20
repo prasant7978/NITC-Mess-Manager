@@ -1,5 +1,7 @@
 package com.nitc.nitcmessmanager.student
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -50,11 +52,21 @@ class StudentDashboardActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.signOut){
-            FirebaseAuth.getInstance().signOut()
-            Toast.makeText(this,"Sign out is successfull", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@StudentDashboardActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Sign Out")
+            dialog.setCancelable(false)
+            dialog.setMessage("Are you sure, want to sign out ?")
+            dialog.setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            })
+            dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this,"Sign out is successfull", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@StudentDashboardActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            })
+            dialog.create().show()
         }
         return true
     }
