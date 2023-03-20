@@ -24,6 +24,7 @@ class StudentProfileFragment : Fragment() {
         studentProfileBinding = FragmentStudentProfileBinding.inflate(inflater,container,false)
 
         studentProfileBinding.textViewStudentName.isEnabled = false
+        studentProfileBinding.textInputStudentEmail.isEnabled = false
         studentProfileBinding.textViewStudentRoll.isEnabled = false
         studentProfileBinding.textViewMessEnrolled.isEnabled = false
         studentProfileBinding.textViewMessBill.isEnabled = false
@@ -41,6 +42,7 @@ class StudentProfileFragment : Fragment() {
                 val student = snapshot.getValue(Student::class.java)
                 if(student != null){
                     studentProfileBinding.textViewStudentName.setText(student.studentName)
+                    studentProfileBinding.textInputStudentEmail.setText(student.studentEmail)
                     studentProfileBinding.textViewStudentRoll.setText(student.studentRollNo)
                     if(student.messEnrolled.isEmpty())
                         studentProfileBinding.textViewMessEnrolled.setText("Not enrolled yet")

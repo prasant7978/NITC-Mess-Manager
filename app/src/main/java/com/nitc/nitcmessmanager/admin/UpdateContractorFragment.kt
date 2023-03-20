@@ -37,6 +37,9 @@ class UpdateContractorFragment : Fragment() {
     ): View? {
         updateContractorBinding = FragmentUpdateContractorBinding.inflate(inflater,container,false)
 
+        updateContractorBinding.textInputContractorEmail.isEnabled = false
+        updateContractorBinding.textInputContractorPass.isEnabled = false
+
         receiveContractorDetails()
 
         updateContractorBinding.textInputAvailability.isEnabled = false

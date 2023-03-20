@@ -8,7 +8,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/main_color"
-    tools:context=".admin.UpdateStudentFragment">
+    tools:context=".admin.UpdateContractorFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewContractorName"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Email"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/button_delete"
             app:boxBackgroundColor="@color/text_input_back"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
@@ -95,12 +95,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Password"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/button_delete"
             app:boxBackgroundColor="@color/text_input_back"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidth="0dp"
-            app:endIconMode="password_toggle"
-            app:endIconTint="@color/black"
             app:hintTextColor="@color/black"
             app:startIconDrawable="@drawable/icon_lock"
             app:startIconTint="@color/black">

@@ -37,6 +37,9 @@ class UpdateStudentFragment : Fragment() {
     ): View? {
         updateStudentBinding = FragmentUpdateStudentBinding.inflate(inflater,container,false)
 
+        updateStudentBinding.textInputEmail.isEnabled = false
+        updateStudentBinding.textInputPass.isEnabled = false
+
         receiveStudentDetails()
 
         updateStudentBinding.buttonUpdateStudent.setOnClickListener {

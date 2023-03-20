@@ -36,6 +36,8 @@ class ContractorProfileFragment : Fragment() {
         retrieveDetailsFromDb(uid)
 
         contractorProfileBinding.textInputAvailability.isEnabled = false
+        contractorProfileBinding.textInputContractorEmail.isEnabled = false
+        contractorProfileBinding.textInputContractorPass.isEnabled = false
 
         contractorProfileBinding.buttonUpdateContractor.setOnClickListener {
             contractorProfileBinding.buttonUpdateContractor.isClickable = false
