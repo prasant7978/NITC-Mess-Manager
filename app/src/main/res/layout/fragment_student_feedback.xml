@@ -8,34 +8,42 @@
     android:background="@color/main_color"
     tools:context=".student.StudentFeedbackFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewFeedback"
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
-        android:elevation="10dp"
-        app:boxStrokeWidth="2dp"
-        app:boxStrokeColor="@color/black"
-        app:counterEnabled="true"
-        app:counterMaxLength="300"
-        app:endIconMode="clear_text"
+        android:background="@drawable/outline_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/feedbackMessage"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
-            android:inputType="textMultiLine"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textCursorDrawable="@null"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/outline_black"
+            android:elevation="10dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="300"
+            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeWidth="0dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feedbackMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/buttonSend"
@@ -51,5 +59,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewFeedback" />
 </androidx.constraintlayout.widget.ConstraintLayout>
