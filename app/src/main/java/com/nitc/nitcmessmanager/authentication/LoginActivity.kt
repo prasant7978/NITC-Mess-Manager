@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
                 .addListenerForSingleValueEvent(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()){
-                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity,StudentDashboardActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -124,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
                 .addListenerForSingleValueEvent(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()){
-                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity,AdminDashboardActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -140,7 +140,7 @@ class LoginActivity : AppCompatActivity() {
                 .addListenerForSingleValueEvent(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()){
-                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity,ContractorDashboard::class.java)
                             startActivity(intent)
                             finish()
@@ -165,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
                             if(snapshot.exists()){
                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
-                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+//                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
                                         intent.putExtra("userType",userType)
                                         startActivity(intent)
@@ -200,7 +200,7 @@ class LoginActivity : AppCompatActivity() {
                             if(snapshot.exists()){
                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
-                                        Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
+//                                        Toast.makeText(applicationContext, "Welcome Admin", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
                                         startActivity(intent)
                                         loginBinding.buttonSignin.isClickable = true
@@ -234,7 +234,7 @@ class LoginActivity : AppCompatActivity() {
                             if(snapshot.exists()){
                                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
-                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+//                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                                         val intent = Intent(this@LoginActivity, ContractorDashboard::class.java)
                                         intent.putExtra("userType",userType)
                                         startActivity(intent)
