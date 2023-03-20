@@ -27,7 +27,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:elevation="5dp"
-            app:srcCompat="@drawable/avatar_feedback" />
+            app:srcCompat="@drawable/contractor" />
 
         <TextView
             android:id="@+id/textViewContractorName"
@@ -90,7 +90,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:srcCompat="@drawable/mess_img" />
+                        app:srcCompat="@drawable/contractor_profile" />
 
                     <TextView
                         android:id="@+id/textViewProfile"
@@ -129,7 +129,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:srcCompat="@drawable/messmenu" />
+                        app:srcCompat="@drawable/mess_menu_circular" />
 
                     <TextView
                         android:id="@+id/textViewMessMenu"
@@ -184,7 +184,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:srcCompat="@drawable/bill" />
+                        app:srcCompat="@drawable/generate_bill" />
 
                     <TextView
                         android:id="@+id/textViewGenerateBill"
@@ -225,7 +225,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:srcCompat="@drawable/feedback" />
+                        app:srcCompat="@drawable/feedback_contractor" />
 
                     <TextView
                         android:id="@+id/textViewCheckFeedback"
@@ -280,7 +280,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.5"
-                        app:srcCompat="@drawable/bill" />
+                        app:srcCompat="@drawable/enrolled_students" />
 
                     <TextView
                         android:id="@+id/textViewEnrolledStudent"

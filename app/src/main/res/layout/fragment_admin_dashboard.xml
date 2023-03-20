@@ -24,7 +24,7 @@
                 android:id="@+id/imageViewAdminImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/avatar_feedback" />
+                app:srcCompat="@drawable/admin" />
 
             <TextView
                 android:id="@+id/textViewAdminName"
@@ -72,7 +72,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/student" />
+                    app:srcCompat="@drawable/manage_student" />
 
                 <TextView
                     android:id="@+id/textViewManageStudent"
@@ -98,20 +98,21 @@
                 android:elevation="5dp"
                 android:background="@drawable/background_card">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewmanageContractor"
                     android:layout_width="100dp"
                     android:layout_height="85dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="7dp"
                     android:layout_marginEnd="26dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toTopOf="@+id/textViewManageContractor"
+                    android:src="@drawable/manage_contractor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/contractor" />
+                    app:layout_constraintVertical_bias="0.5" />
 
                 <TextView
                     android:id="@+id/textViewManageContractor"
@@ -166,7 +167,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/bill" />
+                    app:srcCompat="@drawable/receipt" />
 
                 <TextView
                     android:id="@+id/textViewManageBill"
