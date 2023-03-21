@@ -40,7 +40,15 @@ class CalculateBillPerStudentFragment : Fragment() {
         retrieveCostPerDayFromDb()
 
         calculateBillPerStudentBinding.buttonGenerateBill.setOnClickListener {
-            if(calculateBillPerStudentBinding.textInputLayoutNoOfDaysInt.text.isEmpty()){
+            val days = calculateBillPerStudentBinding.textInputLayoutNoOfDaysInt.text.toString()
+
+            if(days.toIntOrNull() == null){
+                Toast.makeText(activity,"Please, enter valid no. of days",Toast.LENGTH_SHORT).show()
+            }
+            else if(days.toInt() <= 0){
+                Toast.makeText(activity,"No. of days can't be zero or negative",Toast.LENGTH_SHORT).show()
+            }
+            else if(calculateBillPerStudentBinding.textInputLayoutNoOfDaysInt.text.isEmpty()){
                 Toast.makeText(activity,"Please, enter number of days to calculate",Toast.LENGTH_SHORT).show()
             }else{
                 showAlertMessage()
@@ -72,9 +80,6 @@ class CalculateBillPerStudentFragment : Fragment() {
         val totalCostPerStudent = cost * days
 
         val totalDue = totalEnrolledStudent * totalCostPerStudent
-
-//        val map = mutableMapOf<String,Any>()
-//        map["totalDue"] = totalDue
 
         var updatedStudentList = ArrayList<Student>()
 

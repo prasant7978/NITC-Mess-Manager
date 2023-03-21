@@ -194,7 +194,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Cost Per Day"
+            android:hint="Payment Status"
             android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/contractor_profile_cardview_bg"
