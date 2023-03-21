@@ -68,10 +68,10 @@ class GenerateBillFragment : Fragment() {
                                         }
                                     }
 
-                                    Log.d("arguments","...inside the function...")
-                                    Log.d("arguments",totalCostPerStudent.toString())
-                                    Log.d("arguments",totalEnrolledStudent.toString())
-                                    Log.d("arguments",totalDue.toString())
+//                                    Log.d("arguments","...inside the function...")
+//                                    Log.d("arguments",totalCostPerStudent.toString())
+//                                    Log.d("arguments",totalEnrolledStudent.toString())
+//                                    Log.d("arguments",totalDue.toString())
 
                                     val bundle = Bundle()
                                     bundle.putInt("totalCostPerStudent",totalCostPerStudent)

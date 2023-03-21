@@ -82,19 +82,25 @@ class StudentDashboardFragment : Fragment() {
         }
 
         studentDashboardFragmentBinding.showMessMenu.setOnClickListener {
-            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-            val manageMessMenuFragment = ManageMessMenuFragment()
+            if(messName.isEmpty()){
+                Snackbar.make(studentDashboardFragmentBinding.linearLayoutStudentDashboard,"Please enroll in a mess to see the menu.",
+                    Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
+            }
+            else {
+                val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                val manageMessMenuFragment = ManageMessMenuFragment()
 
-            val bundle = Bundle()
-            bundle.putString("userType",userType)
-            bundle.putString("messName",messName)
+                val bundle = Bundle()
+                bundle.putString("userType", userType)
+                bundle.putString("messName", messName)
 
-            manageMessMenuFragment.arguments = bundle
+                manageMessMenuFragment.arguments = bundle
 
-            fragmentTransaction.replace(R.id.frameLayout,manageMessMenuFragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+                fragmentTransaction.replace(R.id.frameLayout, manageMessMenuFragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
         }
 
         studentDashboardFragmentBinding.constraintLayoutPayment.setOnClickListener {
@@ -110,7 +116,7 @@ class StudentDashboardFragment : Fragment() {
         studentDashboardFragmentBinding.buttonFeedback.setOnClickListener {
             if(messName.isEmpty()){
                 Snackbar.make(studentDashboardFragmentBinding.linearLayoutStudentDashboard,"You have not enrolled in any mess yet!",
-                    Snackbar.LENGTH_INDEFINITE).setAction("Close", View.OnClickListener { }).show()
+                    Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
             }
             else {
                 val bundle = Bundle()
