@@ -58,6 +58,7 @@ class ViewBillFragment : Fragment() {
     }
 
     private fun retrievePaymentDetailsFromDb() {
+        mangeBillBinding.progressBar.visibility = View.VISIBLE
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 studentList.clear()
@@ -67,10 +68,19 @@ class ViewBillFragment : Fragment() {
                         studentList.add(student)
                     }
                 }
-                studentList.reverse()
-                mangeBillBinding.recyclerViewMessDueList.layoutManager = LinearLayoutManager(activity)
-                studentBillAdapter = StudentBillAdapter(studentList)
-                mangeBillBinding.recyclerViewMessDueList.adapter = studentBillAdapter
+                if(studentList.isEmpty()){
+                    mangeBillBinding.textViewNoContractorRegistered.visibility = View.VISIBLE
+                    mangeBillBinding.search.visibility = View.INVISIBLE
+                    mangeBillBinding.recyclerViewMessDueList.visibility = View.INVISIBLE
+                }
+                else {
+                    studentList.reverse()
+                    mangeBillBinding.recyclerViewMessDueList.layoutManager =
+                        LinearLayoutManager(activity)
+                    studentBillAdapter = StudentBillAdapter(studentList)
+                    mangeBillBinding.recyclerViewMessDueList.adapter = studentBillAdapter
+                }
+                mangeBillBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

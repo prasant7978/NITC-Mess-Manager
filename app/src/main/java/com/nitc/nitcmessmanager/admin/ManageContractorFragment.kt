@@ -73,6 +73,7 @@ class ManageContractorFragment : Fragment() {
     }
 
     private fun retrieveContractorListFromDb() {
+        manageContractorBinding.progressBar.visibility = View.VISIBLE
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 contractorList.clear()
@@ -82,10 +83,21 @@ class ManageContractorFragment : Fragment() {
                         contractorList.add(contractor)
                     }
                 }
-                contractorList.reverse()
-                manageContractorBinding.recyclerViewContractorList.layoutManager = LinearLayoutManager(activity)
-                contractorAdapter = ContractorAdapter(contractorList,this@ManageContractorFragment)
-                manageContractorBinding.recyclerViewContractorList.adapter = contractorAdapter
+
+                if(contractorList.isEmpty()){
+                    manageContractorBinding.textViewNoContractorRegistered.visibility = View.VISIBLE
+                    manageContractorBinding.search.visibility = View.VISIBLE
+                    manageContractorBinding.recyclerViewContractorList.visibility = View.VISIBLE
+                }
+                else {
+                    contractorList.reverse()
+                    manageContractorBinding.recyclerViewContractorList.layoutManager =
+                        LinearLayoutManager(activity)
+                    contractorAdapter =
+                        ContractorAdapter(contractorList, this@ManageContractorFragment)
+                    manageContractorBinding.recyclerViewContractorList.adapter = contractorAdapter
+                }
+                manageContractorBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

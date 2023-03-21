@@ -2,7 +2,9 @@ package com.nitc.nitcmessmanager.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.nitc.nitcmessmanager.databinding.ActivityForgotPasswordBinding
 
@@ -23,7 +25,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
             val email = forgotBinding.editTextResetEmail.text.toString()
             auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    Toast.makeText(this,"Password reset mail has been sent successfully", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(forgotBinding.forgotPasswordLayout,"Password reset mail has been sent successfully, check you mail",Snackbar.LENGTH_LONG)
+                        .setAction("close",View.OnClickListener {  }).show()
                     finish()
                 }
                 else{

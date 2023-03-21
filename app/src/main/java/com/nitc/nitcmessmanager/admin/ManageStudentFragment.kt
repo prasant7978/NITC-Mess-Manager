@@ -72,6 +72,7 @@ class ManageStudentFragment : Fragment() {
     }
 
     private fun retrieveStudentListFromDb(){
+        manageStudentBinding.progressBar.visibility = View.VISIBLE
         ref.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 studentList.clear()
@@ -81,10 +82,21 @@ class ManageStudentFragment : Fragment() {
                         studentList.add(student)
                     }
                 }
-                studentList.reverse()
-                manageStudentBinding.recyclerViewStudentList.layoutManager = LinearLayoutManager(activity)
-                studentAdapter = StudentAdapter(studentList)
-                manageStudentBinding.recyclerViewStudentList.adapter = studentAdapter
+
+                if(studentList.isEmpty()){
+                    manageStudentBinding.textViewNoStudentEnrolled.visibility = View.VISIBLE
+                    manageStudentBinding.recyclerViewStudentList.visibility = View.INVISIBLE
+                    manageStudentBinding.search.visibility = View.INVISIBLE
+                }
+                else {
+                    studentList.reverse()
+                    manageStudentBinding.recyclerViewStudentList.layoutManager =
+                        LinearLayoutManager(activity)
+                    studentAdapter = StudentAdapter(studentList)
+                    manageStudentBinding.recyclerViewStudentList.adapter = studentAdapter
+                }
+
+                manageStudentBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

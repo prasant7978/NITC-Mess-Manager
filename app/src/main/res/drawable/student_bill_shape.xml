@@ -3,5 +3,5 @@
     <solid
         android:color="@color/student_bill_card_bg"/>
     <corners
-        android:radius="10dp"/>
+        android:radius="15dp"/>
 </shape>

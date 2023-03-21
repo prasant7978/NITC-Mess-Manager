@@ -59,6 +59,7 @@ class ShowMessListFragment : Fragment() {
     }
 
     private fun retrieveMessDetailsFromDb() {
+        showMessListBinding.progressBar.visibility = View.VISIBLE
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 messList.clear()
@@ -68,10 +69,20 @@ class ShowMessListFragment : Fragment() {
                         messList.add(mess)
                     }
                 }
-                messList.reverse()
-                showMessListBinding.recyclerViewMessList.layoutManager = LinearLayoutManager(activity)
-                messAdapter = MessAdapter(messList)
-                showMessListBinding.recyclerViewMessList.adapter = messAdapter
+
+                if(messList.isEmpty()){
+                    showMessListBinding.textViewAvailableMess.visibility = View.INVISIBLE
+                    showMessListBinding.textViewNoContractorRegistered.visibility = View.VISIBLE
+                    showMessListBinding.search.visibility = View.INVISIBLE
+                }
+                else {
+                    messList.reverse()
+                    showMessListBinding.recyclerViewMessList.layoutManager =
+                        LinearLayoutManager(activity)
+                    messAdapter = MessAdapter(messList)
+                    showMessListBinding.recyclerViewMessList.adapter = messAdapter
+                }
+                showMessListBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

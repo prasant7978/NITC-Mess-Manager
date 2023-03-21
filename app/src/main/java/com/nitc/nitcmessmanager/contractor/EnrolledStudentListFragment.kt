@@ -61,6 +61,7 @@ class EnrolledStudentListFragment : Fragment() {
     }
 
     private fun retrieveEnrolledStudentListFromDb() {
+        enrolledStudentListBinding.progressBar.visibility = View.VISIBLE
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         ref.orderByChild("contractorId").equalTo(uid).addListenerForSingleValueEvent(object :
             ValueEventListener {
@@ -72,10 +73,20 @@ class EnrolledStudentListFragment : Fragment() {
                     if(student?.isNotEmpty() == true)
                         studentList = student
                 }
-                studentList.reverse()
-                enrolledStudentListBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-                studentAdapter = EnrolledStudentAdapter(studentList)
-                enrolledStudentListBinding.recyclerView.adapter = studentAdapter
+
+                if(studentList.isEmpty()){
+                    enrolledStudentListBinding.search.visibility = View.INVISIBLE
+                    enrolledStudentListBinding.recyclerView.visibility = View.INVISIBLE
+                    enrolledStudentListBinding.textViewNoStudentEnrolled.visibility = View.VISIBLE
+                }
+                else {
+                    studentList.reverse()
+                    enrolledStudentListBinding.recyclerView.layoutManager =
+                        LinearLayoutManager(activity)
+                    studentAdapter = EnrolledStudentAdapter(studentList)
+                    enrolledStudentListBinding.recyclerView.adapter = studentAdapter
+                }
+                enrolledStudentListBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {

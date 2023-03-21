@@ -32,12 +32,15 @@ class FeedbackFragment : Fragment() {
     ): View? {
         feedbackFragmentBinding = FragmentFeedbackBinding.inflate(inflater,container,false)
 
+        feedbackFragmentBinding.textViewNoFeedbackToShow.visibility = View.INVISIBLE
+
         retrieveFeedbackListFromDb()
 
         return feedbackFragmentBinding.root
     }
 
     private fun retrieveFeedbackListFromDb() {
+        feedbackFragmentBinding.progressBar.visibility = View.VISIBLE
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         ref.orderByChild("contractorId").equalTo(uid).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -48,10 +51,20 @@ class FeedbackFragment : Fragment() {
                     if(feedback?.isNotEmpty() == true)
                         feedbackList = feedback
                 }
-                feedbackList.reverse()
-                feedbackFragmentBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
-                feedbackAdapter = FeedbackAdapter(feedbackList)
-                feedbackFragmentBinding.recyclerView.adapter = feedbackAdapter
+
+                if(feedbackList.isEmpty()){
+                    feedbackFragmentBinding.recyclerView.visibility = View.INVISIBLE
+                    feedbackFragmentBinding.textViewNoFeedbackToShow.visibility = View.VISIBLE
+                }
+                else {
+                    feedbackList.reverse()
+                    feedbackFragmentBinding.recyclerView.layoutManager =
+                        LinearLayoutManager(activity)
+                    feedbackAdapter = FeedbackAdapter(feedbackList)
+                    feedbackFragmentBinding.recyclerView.adapter = feedbackAdapter
+                }
+
+                feedbackFragmentBinding.progressBar.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {
