@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -45,11 +46,25 @@ class UpdateContractorFragment : Fragment() {
         updateContractorBinding.textInputAvailability.isEnabled = false
 
         updateContractorBinding.buttonUpdateContractor.setOnClickListener {
-            updateContractorBinding.buttonUpdateContractor.isClickable = false
-            updateContractorBinding.buttonDeleteContractor.isClickable = false
-            updateContractorBinding.progressBar.visibility = View.VISIBLE
 
-            updateContractorDetails()
+            val costPerDay = updateContractorBinding.textInputCostPerDay.text.toString()
+            val capacity = updateContractorBinding.textInputCapacity.text.toString()
+
+            if(costPerDay.toIntOrNull() == null){
+                Snackbar.make(updateContractorBinding.linearLayout,"Please enter numerical value for cost per day.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else if(capacity.toIntOrNull() == null){
+                Snackbar.make(updateContractorBinding.linearLayout,"Please enter numerical value for capacity.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else if(costPerDay.toInt() <= 0){
+                Snackbar.make(updateContractorBinding.linearLayout,"Cost per day can't be zero or negative",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else if(capacity.toInt() <= 0){
+                Snackbar.make(updateContractorBinding.linearLayout,"Capacity can't be zero or negative",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else {
+                updateContractorDetails()
+            }
         }
 
         updateContractorBinding.buttonDeleteContractor.setOnClickListener {
@@ -112,6 +127,10 @@ class UpdateContractorFragment : Fragment() {
     }
 
     private fun updateContractorDetails() {
+        updateContractorBinding.buttonUpdateContractor.isClickable = false
+        updateContractorBinding.buttonDeleteContractor.isClickable = false
+        updateContractorBinding.progressBar.visibility = View.VISIBLE
+
         val map = mutableMapOf<String,Any>()
         map["contractorId"] = uid
         map["contractorEmail"] = updateContractorBinding.textInputContractorEmail.text.toString()

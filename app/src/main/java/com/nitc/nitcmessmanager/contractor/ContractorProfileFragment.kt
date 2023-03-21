@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.isDigitsOnly
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -40,10 +41,25 @@ class ContractorProfileFragment : Fragment() {
         contractorProfileBinding.textInputContractorPass.isEnabled = false
 
         contractorProfileBinding.buttonUpdateContractor.setOnClickListener {
-            contractorProfileBinding.buttonUpdateContractor.isClickable = false
-            contractorProfileBinding.progressBar.visibility = View.VISIBLE
 
-            updateContractorDetails()
+            val costPerDay = contractorProfileBinding.textInputCostPerDay.text.toString()
+            val capacity = contractorProfileBinding.textInputCapacity.text.toString()
+
+            if(costPerDay.toIntOrNull() == null){
+                Snackbar.make(contractorProfileBinding.linearLayout,"Please enter numerical value for cost per day.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else if(capacity.toIntOrNull() == null){
+                Snackbar.make(contractorProfileBinding.linearLayout,"Please enter numerical value for capacity.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+            }
+            else if(capacity.toInt() <= 0){
+                Snackbar.make(contractorProfileBinding.linearLayout,"Capacity can't be zero or negative",Snackbar.LENGTH_SHORT).setAction("close",View.OnClickListener {  }).show()
+            }
+            else if(costPerDay.toInt() <= 0){
+                Snackbar.make(contractorProfileBinding.linearLayout,"Cost per day can't be zero or negative",Snackbar.LENGTH_SHORT).setAction("close",View.OnClickListener {  }).show()
+            }
+            else {
+                updateContractorDetails()
+            }
         }
 
         return contractorProfileBinding.root
@@ -74,6 +90,9 @@ class ContractorProfileFragment : Fragment() {
     }
 
     private fun updateContractorDetails() {
+        contractorProfileBinding.buttonUpdateContractor.isClickable = false
+        contractorProfileBinding.progressBar.visibility = View.VISIBLE
+
         val map = mutableMapOf<String,Any>()
         map["contractorId"] = uid
         map["contractorEmail"] = contractorProfileBinding.textInputContractorEmail.text.toString()

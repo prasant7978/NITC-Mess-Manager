@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.text.isDigitsOnly
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +31,7 @@ class AddContractorFragment : Fragment() {
         addContractorBinding = FragmentAddContractorBinding.inflate(inflater,container,false)
 
         addContractorBinding.buttonAddContractor.setOnClickListener {
+
             val contName = addContractorBinding.textInputContractorName.text.toString()
             val contEmail = addContractorBinding.textInputContractorEmail.text.toString()
             val contPass = addContractorBinding.textInputContractorPass.text.toString()
@@ -40,11 +42,34 @@ class AddContractorFragment : Fragment() {
 
             if(contName.isEmpty() || contEmail.isEmpty() || contPass.isEmpty() || messName.isEmpty() || costPerDay.isEmpty() || foodType.isEmpty() || capacity.isEmpty()){
                 Toast.makeText(activity,"Please provide complete information", Toast.LENGTH_SHORT).show()
-            }else{
-                addContractorBinding.buttonAddContractor.isClickable = false
-                addContractorBinding.buttonClearAll.isClickable = false
-                addContractorBinding.progressBar.visibility = View.VISIBLE
-                addContractorToDb(contName, contEmail, contPass, messName, costPerDay, foodType, capacity)
+            }
+            else{
+                if(costPerDay.toIntOrNull() == null){
+                    Snackbar.make(addContractorBinding.linearLayout,"Please enter numerical value for cost per day.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+                }
+                else if(capacity.toIntOrNull() == null){
+                    Snackbar.make(addContractorBinding.linearLayout,"Please enter numerical value for capacity.",Snackbar.LENGTH_LONG).setAction("close",View.OnClickListener { }).show()
+                }
+                else if(costPerDay.toInt() <= 0){
+                    Toast.makeText(activity,"Cost per day can't be zero or negative", Toast.LENGTH_SHORT).show()
+                }
+                else if(capacity.toInt() <= 0){
+                    Toast.makeText(activity,"Capacity can't be zero or negative", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    addContractorBinding.buttonAddContractor.isClickable = false
+                    addContractorBinding.buttonClearAll.isClickable = false
+                    addContractorBinding.progressBar.visibility = View.VISIBLE
+                    addContractorToDb(
+                        contName,
+                        contEmail,
+                        contPass,
+                        messName,
+                        costPerDay,
+                        foodType,
+                        capacity
+                    )
+                }
             }
         }
 
