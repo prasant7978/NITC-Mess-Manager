@@ -161,10 +161,22 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/buttonSelectMess"
+            android:id="@+id/buttonShowMenu"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
+            android:elevation="10dp"
+            android:backgroundTint="#E6E6FA"
+            android:text="Mess Menu"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonSelectMess"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="0dp"
             android:elevation="10dp"
             android:backgroundTint="@color/primary_button"
             android:text="Select Mess"

@@ -8,12 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.contractor.ManageMessMenuFragment
 import com.nitc.nitcmessmanager.databinding.FragmentSelectMessBinding
 import com.nitc.nitcmessmanager.model.Contractor
 import com.nitc.nitcmessmanager.model.Student
@@ -42,6 +46,22 @@ class SelectMessFragment : Fragment() {
         selectMessBinding.textInputCostPerDay.isEnabled = false
         selectMessBinding.textInputAvailability.isEnabled = false
 
+        selectMessBinding.buttonShowMenu.setOnClickListener {
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            val manageMessMenuFragment = ManageMessMenuFragment()
+
+            val bundle = Bundle()
+            bundle.putString("userType", "Student")
+            bundle.putString("messName", messName)
+
+            manageMessMenuFragment.arguments = bundle
+
+            fragmentTransaction.replace(R.id.frameLayout, manageMessMenuFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         selectMessBinding.buttonSelectMess.setOnClickListener {
             val aval = selectMessBinding.textInputAvailability.text.toString().toInt()
             if(aval == 0){
@@ -56,9 +76,9 @@ class SelectMessFragment : Fragment() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             for (ds in snapshot.children) {
                                 Log.d("debug", ds.child("messEnrolled").value.toString())
-                                messName = ds.child("messEnrolled").value.toString()
+                                var messEnrolled = ds.child("messEnrolled").value.toString()
 
-                                if (messName == "") {
+                                if (messEnrolled == "") {
                                     val dialog = AlertDialog.Builder(activity)
                                     dialog.setTitle("Are you sure?")
                                     dialog.setCancelable(false)
@@ -80,7 +100,7 @@ class SelectMessFragment : Fragment() {
                                     val dialog = AlertDialog.Builder(activity)
                                     dialog.setTitle("Select Mess")
                                     dialog.setCancelable(false)
-                                    dialog.setMessage("You have already enrolled in $messName for this month")
+                                    dialog.setMessage("You have already enrolled in $messEnrolled for this month")
                                     dialog.setNegativeButton(
                                         "OK",
                                         DialogInterface.OnClickListener { dialog, which ->
@@ -168,6 +188,7 @@ class SelectMessFragment : Fragment() {
     }
 
     private fun receiveMessDetails() {
+        messName = arguments?.getString("messName").toString()
         selectMessBinding.textInputMessName.setText(arguments?.getString("messName").toString())
         selectMessBinding.textInputFoodType.setText(arguments?.getString("foodType").toString())
         selectMessBinding.textInputCostPerDay.setText(arguments?.getString("costPerDay").toString())
