@@ -28,9 +28,9 @@ class LoginActivity : AppCompatActivity() {
     private var userType : String = "Student"
     val auth : FirebaseAuth = FirebaseAuth.getInstance()
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
-    val studentReference = db.reference.child("students")
-    val adminReference = db.reference.child("admin")
-    val contractorReference = db.reference.child("contractors")
+    private val studentReference = db.reference.child("students")
+    private val adminReference = db.reference.child("admin")
+    private val contractorReference = db.reference.child("contractors")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
             loginBinding.contractorLoginTypeButton.setTextColor(Color.BLACK)
 
             userType = "Admin"
+
+            loginBinding.textViewSignup.visibility = View.INVISIBLE
         }
 
         loginBinding.studentLoginTypeButton.setOnClickListener {
@@ -62,6 +64,8 @@ class LoginActivity : AppCompatActivity() {
             loginBinding.contractorLoginTypeButton.setTextColor(Color.BLACK)
 
             userType = "Student"
+
+            loginBinding.textViewSignup.visibility = View.VISIBLE
         }
 
         loginBinding.contractorLoginTypeButton.setOnClickListener {
@@ -73,6 +77,8 @@ class LoginActivity : AppCompatActivity() {
             loginBinding.contractorLoginTypeButton.setTextColor(Color.WHITE)
 
             userType = "Mess Contractor"
+
+            loginBinding.textViewSignup.visibility = View.INVISIBLE
         }
 
         loginBinding.buttonSignin.setOnClickListener {
