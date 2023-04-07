@@ -1,5 +1,8 @@
+// Currently no use as for adding a student the admin would be redirect to the student signup page
+
 package com.nitc.nitcmessmanager.admin
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.authentication.SignUpActivity
 import com.nitc.nitcmessmanager.databinding.FragmentAddStudentBinding
 import com.nitc.nitcmessmanager.model.Student
 
@@ -38,9 +42,14 @@ class AddStudentFragment : Fragment() {
                 Toast.makeText(activity,"Please provide complete information",Toast.LENGTH_SHORT).show()
             }
             else {
-                addStudentBinding.buttonAddStudent.isCheckable = false
-                addStudentBinding.progressBar.visibility = View.VISIBLE
-                addStudentToDb(name, email, pass, roll, mess)
+                if(!checkConstraints(email)){
+                    Toast.makeText(context,"Enter a valid nitc email id",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    addStudentBinding.buttonAddStudent.isCheckable = false
+                    addStudentBinding.progressBar.visibility = View.VISIBLE
+                    addStudentToDb(name, email, pass, roll, mess)
+                }
             }
         }
 
@@ -76,5 +85,25 @@ class AddStudentFragment : Fragment() {
         addStudentBinding.textInputPass.setText("")
         addStudentBinding.textInputRoll.setText("")
         addStudentBinding.textInputMessName.setText("")
+    }
+
+    private fun checkConstraints(email: String): Boolean {
+        if(email.contains('_')) {
+            val roll = email.substring(email.indexOf("_") + 1, email.length)
+            if (roll[0] == 'm' || roll[0] == 'b' || roll[0] == 'p') {
+                if(roll.contains('@')) {
+                    val domain = roll.substring(roll.indexOf("@") + 1, roll.length)
+                    return domain == "nitc.ac.in"
+                }
+                else{
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        else{
+            return false
+        }
     }
 }

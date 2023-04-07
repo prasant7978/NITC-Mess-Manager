@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -115,9 +116,12 @@ class LoginActivity : AppCompatActivity() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()){
 //                            Toast.makeText(applicationContext,"Welcome",Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity,StudentDashboardActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            if(auth.currentUser?.isEmailVerified == true) {
+                                val intent =
+                                    Intent(this@LoginActivity, StudentDashboardActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
 
@@ -165,38 +169,90 @@ class LoginActivity : AppCompatActivity() {
         loginBinding.progressBarLogin.visibility = View.VISIBLE
         when (userType) {
             "Student" -> {
-                studentReference.orderByChild("studentEmail").equalTo(email)
-                    .addListenerForSingleValueEvent(object : ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if(snapshot.exists()){
-                                auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
+                if (!checkConstraints(email)) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Enter a valid nitc email id",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    loginBinding.buttonSignin.isClickable = true
+                    loginBinding.progressBarLogin.visibility = View.INVISIBLE
+                }
+                else {
+                    Log.d("user", auth.currentUser?.isEmailVerified.toString())
+                    Log.d("user", auth.currentUser?.uid.toString())
+                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            if (auth.currentUser?.isEmailVerified == true) {
+                                Toast.makeText(this, "Email is verified", Toast.LENGTH_SHORT).show()
+                                studentReference.orderByChild("studentEmail").equalTo(email)
+                                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            if (snapshot.exists()) {
+                                                auth.signInWithEmailAndPassword(email, pass)
+                                                    .addOnCompleteListener { task ->
+                                                        if (task.isSuccessful) {
 //                                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
-                                        val intent = Intent(this@LoginActivity, StudentDashboardActivity::class.java)
-                                        intent.putExtra("userType",userType)
-                                        startActivity(intent)
-                                        loginBinding.buttonSignin.isClickable = true
-                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
-                                        finish()
-                                    } else {
-                                        Toast.makeText(applicationContext, task.exception?.localizedMessage.toString(), Toast.LENGTH_SHORT).show()
-                                        loginBinding.buttonSignin.isClickable = true
-                                        loginBinding.progressBarLogin.visibility = View.INVISIBLE
-                                    }
-                                }
+                                                            val intent = Intent(
+                                                                this@LoginActivity,
+                                                                StudentDashboardActivity::class.java
+                                                            )
+                                                            intent.putExtra("userType", userType)
+                                                            startActivity(intent)
+                                                            loginBinding.buttonSignin.isClickable =
+                                                                true
+                                                            loginBinding.progressBarLogin.visibility =
+                                                                View.INVISIBLE
+                                                            finish()
+                                                        }
+                                                        else {
+                                                            Toast.makeText(
+                                                                applicationContext,
+                                                                task.exception?.localizedMessage.toString(),
+                                                                Toast.LENGTH_SHORT
+                                                            ).show()
+                                                            loginBinding.buttonSignin.isClickable =
+                                                                true
+                                                            loginBinding.progressBarLogin.visibility =
+                                                                View.INVISIBLE
+                                                        }
+                                                    }
+                                            }
+                                            else {
+                                                Toast.makeText(
+                                                    applicationContext,
+                                                    "Incorrect username or password",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                                loginBinding.buttonSignin.isClickable = true
+                                                loginBinding.progressBarLogin.visibility =
+                                                    View.INVISIBLE
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            TODO("Not yet implemented")
+                                        }
+                                    })
                             }
-                            else{
-                                Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+                            else {
+                                Toast.makeText(
+                                    this,
+                                    "Please verify your email first",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                auth.signOut()
                                 loginBinding.buttonSignin.isClickable = true
                                 loginBinding.progressBarLogin.visibility = View.INVISIBLE
                             }
                         }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
+                        else{
+                            Toast.makeText(this, task.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
+                            loginBinding.buttonSignin.isClickable = true
+                            loginBinding.progressBarLogin.visibility = View.INVISIBLE
                         }
-
-                    })
+                    }
+                }
             }
 
             "Admin" -> {
@@ -279,6 +335,26 @@ class LoginActivity : AppCompatActivity() {
                 loginBinding.progressBarLogin.visibility = View.INVISIBLE
                 Toast.makeText(applicationContext, "Select a user type", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun checkConstraints(email: String): Boolean {
+        if(email.contains('_')) {
+            val roll = email.substring(email.indexOf("_") + 1, email.length)
+            if (roll[0] == 'm' || roll[0] == 'b' || roll[0] == 'p') {
+                if(roll.contains('@')) {
+                    val domain = roll.substring(roll.indexOf("@") + 1, roll.length)
+                    return domain == "nitc.ac.in"
+                }
+                else{
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        else{
+            return false
         }
     }
 

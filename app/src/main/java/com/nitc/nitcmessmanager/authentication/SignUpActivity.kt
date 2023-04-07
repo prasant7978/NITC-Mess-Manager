@@ -2,8 +2,10 @@ package com.nitc.nitcmessmanager.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.nitc.nitcmessmanager.databinding.ActivitySignUpBinding
@@ -38,7 +40,12 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this,"Please provide complete information",Toast.LENGTH_SHORT).show()
             }
             else {
-                signupWithFirebase(email,password,name,roll)
+                if(!checkConstraints(email)){
+                    Toast.makeText(this@SignUpActivity,"Enter a valid nitc email id",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    signupWithFirebase(email, password, name, roll)
+                }
             }
         }
     }
@@ -48,21 +55,43 @@ class SignUpActivity : AppCompatActivity() {
         signupBinding.progressBarSignup.visibility = View.VISIBLE
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
-            if(task.isSuccessful){
-
+            if (task.isSuccessful) {
                 val uid = task.getResult().user?.uid.toString()
-                val student = Student(uid,name,email,password,roll,"Student",0,"paid","")
+                val student = Student(uid, name, email, password, roll, "Student", 0, "paid", "")
 
                 reference.child(uid).setValue(student)
 
-                Toast.makeText(this,"Your account has been created", Toast.LENGTH_SHORT).show()
+                auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                    Log.d("signup", "mail sent")
+
+                    Toast.makeText(this,"A verification link has been sent to the mail id",Toast.LENGTH_LONG).show()
+
+                    finish()
+                }
+
                 signupBinding.buttonSignup.isClickable = true
                 signupBinding.progressBarSignup.visibility = View.INVISIBLE
-                finish()
             }
-            else{
-                Toast.makeText(this,task.exception?.localizedMessage.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkConstraints(email: String): Boolean {
+        if(email.contains('_')) {
+            val roll = email.substring(email.indexOf("_") + 1, email.length)
+            if (roll[0] == 'm' || roll[0] == 'b' || roll[0] == 'p') {
+                if(roll.contains('@')) {
+                    val domain = roll.substring(roll.indexOf("@") + 1, roll.length)
+                    return domain == "nitc.ac.in"
+                }
+                else{
+                    return false
+                }
+            } else {
+                return false
             }
+        }
+        else{
+            return false
         }
     }
 }

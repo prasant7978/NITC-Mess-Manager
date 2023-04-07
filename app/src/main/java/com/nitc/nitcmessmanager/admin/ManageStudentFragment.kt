@@ -1,5 +1,6 @@
 package com.nitc.nitcmessmanager.admin
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nitc.nitcmessmanager.R
+import com.nitc.nitcmessmanager.authentication.SignUpActivity
 import com.nitc.nitcmessmanager.databinding.FragmentManageStudentBinding
 import com.nitc.nitcmessmanager.model.Student
 
@@ -35,13 +37,16 @@ class ManageStudentFragment : Fragment() {
         retrieveStudentListFromDb()
 
         manageStudentBinding.textViewAddStudent.setOnClickListener {
-            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-            val addStudentFragment = AddStudentFragment()
+            val intent = Intent(context, SignUpActivity::class.java)
+            startActivity(intent)
 
-            fragmentTransaction.replace(R.id.frameLayout,addStudentFragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+//            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+//            val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
+//            val addStudentFragment = AddStudentFragment()
+//
+//            fragmentTransaction.replace(R.id.frameLayout,addStudentFragment)
+//            fragmentTransaction.addToBackStack(null)
+//            fragmentTransaction.commit()
         }
 
         manageStudentBinding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
