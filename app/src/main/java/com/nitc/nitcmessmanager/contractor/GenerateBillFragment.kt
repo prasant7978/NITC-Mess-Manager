@@ -43,9 +43,9 @@ class GenerateBillFragment : Fragment() {
                     val contractor = ds.getValue(Contractor::class.java)
                     if(contractor != null){
                         if(contractor.totalDue == 0){
-                            val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+                            val fragmentManager : FragmentManager = parentFragmentManager
                             val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
-                            val calculateBillPerStudentFragment = CalculateBillPerStudentFragment()
+                            val calculateBillPerStudentFragment = CalculateBillPerStudentFragment(childFragmentManager)
 
                             fragmentTransaction.replace(R.id.frameLayoutBill,calculateBillPerStudentFragment)
                             fragmentTransaction.commit()

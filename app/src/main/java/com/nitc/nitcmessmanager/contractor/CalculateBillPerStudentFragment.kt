@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
@@ -22,7 +24,7 @@ import com.nitc.nitcmessmanager.databinding.FragmentCalculateBillPerStudentBindi
 import com.nitc.nitcmessmanager.model.Contractor
 import com.nitc.nitcmessmanager.model.Student
 
-class CalculateBillPerStudentFragment : Fragment() {
+class CalculateBillPerStudentFragment(var thisFragmentManager:FragmentManager) : Fragment() {
 
     lateinit var calculateBillPerStudentBinding: FragmentCalculateBillPerStudentBinding
     val db : FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -52,6 +54,7 @@ class CalculateBillPerStudentFragment : Fragment() {
                 Toast.makeText(activity,"Please, enter number of days to calculate",Toast.LENGTH_SHORT).show()
             }else{
                 showAlertMessage()
+
             }
         }
 
@@ -83,7 +86,7 @@ class CalculateBillPerStudentFragment : Fragment() {
 
         var updatedStudentList = ArrayList<Student>()
 
-        reference_student.orderByChild("messEnrolled").equalTo(messName).addValueEventListener(object : ValueEventListener{
+        reference_student.orderByChild("messEnrolled").equalTo(messName).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 updatedStudentList.clear()
                 for(std in snapshot.children){
@@ -114,8 +117,8 @@ class CalculateBillPerStudentFragment : Fragment() {
 
                     })
 
+//                Toast.makeText(getContext(),"Bill generated successfully",Toast.LENGTH_LONG).show()
                 Snackbar.make(calculateBillPerStudentBinding.constraintLayoutCalculateBillPerStudent,"Bill Generated successfully", Snackbar.LENGTH_LONG).setAction("Close", View.OnClickListener { }).show()
-
 //                reference.child(uid).updateChildren(map).addOnCompleteListener { task ->
 //                    if(task.isSuccessful){
                 val bundle = Bundle()
@@ -123,7 +126,7 @@ class CalculateBillPerStudentFragment : Fragment() {
                 bundle.putInt("totalEnrolledStudent",totalEnrolledStudent)
                 bundle.putInt("totalDue",totalDue)
 
-                val fragmentManager : FragmentManager = requireActivity().supportFragmentManager
+                val fragmentManager : FragmentManager = thisFragmentManager
                 val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()
                 val totalBillGeneratedFragment = TotalBillGeneratedFragment()
 
