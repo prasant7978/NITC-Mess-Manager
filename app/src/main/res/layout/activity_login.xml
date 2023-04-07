@@ -11,14 +11,12 @@
         android:id="@+id/imageViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/nitc_mess_manager" />
+        app:srcCompat="@drawable/nitc_mess_manager_login_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
